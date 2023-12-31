@@ -47,7 +47,7 @@ int main() {
     return 0;
 }
 
-3)Write a program to read in two integers and swap their values using the bitwise XOR 
+3) Write a program to read in two integers and swap their values using the bitwise XOR 
 operator. 
 
 #include <iostream>
@@ -76,3 +76,29 @@ int main() {
     return 0;
 }
 
+4) a program to read in a floating-point number and round it to the nearest integer 
+using the floor and ceil functions
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double floatingNumber;
+
+    // Read a floating-point number from the user
+    cout << "Enter a floating-point number: ";
+    cin >> floatingNumber;
+
+    // Round to the nearest integer using floor and ceil
+    int roundedDown = static_cast<int>(floor(floatingNumber));
+    int roundedUp = static_cast<int>(ceil(floatingNumber));
+
+    // Output the results
+    cout << "Original number: " << floatingNumber << endl;
+    cout << "Rounded down: " << roundedDown << endl;
+    cout << "Rounded up: " << roundedUp << endl;
+
+    return 0;
+}
