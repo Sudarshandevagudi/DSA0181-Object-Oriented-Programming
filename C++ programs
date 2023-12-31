@@ -79,7 +79,6 @@ int main() {
 4) a program to read in a floating-point number and round it to the nearest integer 
 using the floor and ceil functions
 
-
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -99,6 +98,315 @@ int main() {
     cout << "Original number: " << floatingNumber << endl;
     cout << "Rounded down: " << roundedDown << endl;
     cout << "Rounded up: " << roundedUp << endl;
+
+    return 0;
+}
+
+5) Write a program to read in three integers and determine which one is the maximum using 
+the ternary conditional operator
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2, num3;
+
+    // Read three integers from the user
+    cout << "Enter the first integer: ";
+    cin >> num1;
+
+    cout << "Enter the second integer: ";
+    cin >> num2;
+
+    cout << "Enter the third integer: ";
+    cin >> num3;
+
+    // Use the ternary conditional operator to find the maximum
+    int maxNum = (num1 > num2) ? ((num1 > num3) ? num1 : num3) : ((num2 > num3) ? num2 : num3);
+
+    // Output the result
+    cout << "The maximum number is: " << maxNum << endl;
+
+    return 0;
+}
+
+6) Write a program to read in two integers and determine if they are equal or not using the 
+ternary conditional operator. 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2;
+
+    // Read two integers from the user
+    cout << "Enter the first integer: ";
+    cin >> num1;
+
+    cout << "Enter the second integer: ";
+    cin >> num2;
+
+    // Use the ternary conditional operator to check if the integers are equal
+    string result = (num1 == num2) ? "Equal" : "Not Equal";
+
+    // Output the result
+    cout << "The two integers are: " << result << endl;
+
+    return 0;
+}
+
+7) Write a program to read in an integer and determine if it is divisible by 3 or not using the 
+ternary conditional operator
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+
+    // Read an integer from the user
+    cout << "Enter an integer: ";
+    cin >> num;
+
+    // Use the ternary conditional operator to check if the integer is divisible by 3
+    string result = (num % 3 == 0) ? "Divisible by 3" : "Not divisible by 3";
+
+    // Output the result
+    cout << "The integer is: " << result << endl;
+
+    return 0;
+}
+
+8) Write a program to read in an integer and print the multiplication table for that number 
+using a for loop
+
+#include <iostream>
+
+int main() {
+    int num;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Print the multiplication table for the entered number
+    std::cout << "Multiplication table for " << num << ":\n";
+    for (int i = 1; i <= 10; ++i) {
+        std::cout << num << " * " << i << " = " << (num * i) << std::endl;
+    }
+
+    return 0;
+}
+
+9) Write a program to read in an integer and print the factorial of that number using a for 
+loop
+
+#include <iostream>
+
+int main() {
+    int num;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Calculate and print the factorial of the entered number
+    long long factorial = 1;
+    for (int i = 1; i <= num; ++i) {
+        factorial *= i;
+    }
+
+    std::cout << "Factorial of " << num << " is: " << factorial << std::endl;
+
+    return 0;
+}
+
+10) Write a program to read in an integer and determine if it is a prime number or not using a 
+for loop
+
+#include <iostream>
+
+int main() {
+    int num;
+    bool isPrime = true;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Check if the entered number is a prime number
+    if (num <= 1) {
+        isPrime = false;
+    } else {
+        for (int i = 2; i <= num / 2; ++i) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+
+    // Output the result
+    if (isPrime) {
+        std::cout << num << " is a prime number." << std::endl;
+    } else {
+        std::cout << num << " is not a prime number." << std::endl;
+    }
+
+    return 0;
+}
+
+11) Write a program to read in an integer and print the Fibonacci series up to that number 
+using a for loop
+
+#include <iostream>
+
+int main() {
+    int num;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Print Fibonacci series up to the entered number
+    int a = 0, b = 1, nextTerm;
+    std::cout << "Fibonacci series up to " << num << ": ";
+
+    for (int i=0;i<=num;i++) {
+        std::cout << a << " ";
+        nextTerm = a + b;
+        a = b;
+        b = nextTerm;
+    }
+
+    std::cout << std::endl;
+
+    return 0;
+}
+
+
+12) Write a program to read in an integer and print the sum of all its digits using a while loop. 
+
+#include <iostream>
+
+int main() {
+    int num, originalNum, remainder, sum = 0;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Store the original number
+    originalNum = num;
+
+    // Calculate the sum of digits using a while loop
+    while (num != 0) {
+        remainder = num % 10;
+        sum += remainder;
+        num /= 10;
+    }
+
+    // Output the result
+    std::cout << "Sum of digits of " << originalNum << " is: " << sum << std::endl;
+
+    return 0;
+}
+
+13) Write a program to read in an integer and determine if it is a palindrome or not using a 
+while loop. 
+
+#include <iostream>
+
+int main() {
+    int num, originalNum, reversedNum = 0, remainder;
+
+    // Read an integer from the user
+    std::cout << "Enter an integer: ";
+    std::cin >> num;
+
+    // Store the original number
+    originalNum = num;
+
+    // Reverse the number using a while loop
+    while (num > 0) {
+        remainder = num % 10;
+        reversedNum = reversedNum * 10 + remainder;
+        num /= 10;
+    }
+
+    // Check if the original number is equal to its reverse
+    if (originalNum == reversedNum) {
+        std::cout << originalNum << " is a palindrome." << std::endl;
+    } else {
+        std::cout << originalNum << " is not a palindrome." << std::endl;
+    }
+
+    return 0;
+}
+
+14) Write a program to read in two integers and compute their greatest common divisor using 
+a do-while loop. 
+
+#include <iostream>
+
+int main() {
+    int num1, num2;
+
+    // Read two integers from the user
+    std::cout << "Enter the first integer: ";
+    std::cin >> num1;
+
+    std::cout << "Enter the second integer: ";
+    std::cin >> num2;
+
+    // Ensure both numbers are positive
+    if (num1 <= 0 || num2 <= 0) {
+        std::cout << "Please enter positive integers." << std::endl;
+        return 1;
+    }
+
+    int gcd;
+
+    // Compute the GCD using the Euclidean algorithm and a do-while loop
+    do {
+        gcd = num1 % num2;
+        num1 = num2;
+        num2 = gcd;
+    } while (num2 != 0);
+
+    // Output the result
+    std::cout << "The greatest common divisor (GCD) is: " << num1 << std::endl;
+
+    return 0;
+}
+
+
+15) Write a program to read in an integer and determine if it is an Armstrong number or not. 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num, originalNum, remainder, result = 0;
+    cout << "Enter a three-digit integer: ";
+    cin >> num;
+    originalNum = num;
+
+    while (originalNum != 0) {
+        // remainder contains the last digit
+        remainder = originalNum % 10;
+        
+        result += remainder * remainder * remainder;
+        
+        // removing last digit from the orignal number
+        originalNum /= 10;
+    }
+
+    if (result == num)
+        cout << num << " is an Armstrong number.";
+    else
+        cout << num << " is not an Armstrong number.";
 
     return 0;
 }
