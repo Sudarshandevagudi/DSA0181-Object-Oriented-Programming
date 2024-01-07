@@ -477,3 +477,448 @@ int main() {
 
     return 0;
 }
+
+18 ) Write a C++ program to reverse the elements of an array.
+
+
+#include <iostream>
+using namespace std;
+
+void reverseArray(int arr[], int n) {
+  int temp;
+  for(int i = 0; i < n / 2; i++) {
+    temp = arr[i];
+    arr[i] = arr[n - i - 1];
+    arr[n - i - 1] = temp;
+  }
+}
+
+int main() {
+  int n;
+  cout << "Enter size of array: ";
+  cin >> n;
+  
+  int arr[n];
+  cout << "Enter elements: ";
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i]; 
+  }
+  
+  reverseArray(arr, n); 
+  
+  cout << "Reversed array: ";
+  for(int i = 0; i < n; i++) {
+    cout << arr[i] << " ";  
+  }
+  
+  return 0;
+}
+
+
+19) Write a C++ program to insert an element into an array at a specific position
+
+
+#include <iostream>
+using namespace std;
+
+void insertElement(int arr[], int &n, int x, int pos) {
+  
+  // shift elements to the right  
+  for(int i = n; i >= pos; i--) {
+    arr[i] = arr[i - 1];
+  }
+  
+  // insert x at pos
+  arr[pos - 1] = x;
+  
+  // increase size
+  n++; 
+}
+
+int main() {
+
+  int n;
+  cout << "Enter size of array: ";
+  cin >> n;
+  
+  int arr[n+1]; // size n+1 to handle insertion
+  
+  cout << "Enter elements: ";
+  for(int i = 0; i < n; i++) {
+     cin >> arr[i];
+  }
+
+  int x; 
+  cout << "\nEnter element to insert: ";
+  cin >> x;
+  
+  int pos;
+  cout << "Enter position: ";
+  cin >> pos;
+  
+  insertElement(arr, n, x, pos); 
+
+  cout << "\nArray after insertion: ";
+  for(int i = 0; i < n; i++) {
+    cout << arr[i] << " ";
+  } 
+  
+  return 0;
+}
+
+
+20) Write a C++ program to delete an element from an array at a specific position.
+
+
+#include <iostream>
+using namespace std;
+
+void deleteElement(int arr[], int &n, int pos) {
+  // shift elements left  
+  for(int i = pos-1; i < n-1; i++) {
+    arr[i] = arr[i + 1];
+  }
+  
+  // decrease size
+  n--;
+}
+
+int main() {
+
+  int n; 
+  cout << "Enter size of array: ";
+  cin >> n;
+
+  int arr[n];
+  cout << "Enter elements: ";
+
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i];  
+  }
+
+  int pos;
+  cout << "\nEnter position to delete: ";
+  cin >> pos;
+
+  deleteElement(arr, n, pos);
+
+  cout << "\nArray after deletion: "; 
+  for(int i = 0; i < n; i++) {
+    cout << arr[i] << " "; 
+  }
+
+  return 0;
+}
+
+21) Write a C++ program to find the sum of elements in an array.
+
+
+#include <iostream>
+using namespace std;
+
+int findSum(int arr[], int n) {
+  int sum = 0;
+  for(int i = 0; i < n; i++) {
+    sum += arr[i];
+  }
+  return sum;
+}
+
+int main() {
+  
+  int n;
+  cout << "Enter size of array: ";
+  cin >> n;
+
+  int arr[n];  
+  cout << "Enter elements: ";
+  for(int i = 0; i < n; i++) {
+     cin >> arr[i];
+  }
+
+  int sum = findSum(arr, n);
+  
+  cout << "\nSum of array elements: " << sum;
+  
+  return 0;
+}
+
+
+22 ) Write a C++ program to find the average of elements in an array.
+
+
+#include <iostream>
+using namespace std;
+
+float findAverage(int arr[], int n) {
+  int sum = 0; 
+  for(int i = 0; i < n; i++) {
+    sum += arr[i];
+  }
+  
+  return (float)sum / n; 
+}
+
+int main() {
+
+  int n;
+  cout << "Enter size of array: ";
+  cin >> n;
+
+  int arr[n];
+  cout << "Enter " << n << " elements: ";
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
+
+  float avg = findAverage(arr, n);
+
+  cout << "\nAverage of array elements: " << avg;
+  
+  return 0;
+}
+
+
+23 )  Write a C++ program to find the second largest element in an array
+
+
+#include <iostream>
+using namespace std;
+
+int secondLargest(int arr[], int n){
+  
+  int largest = 0, second = -1;
+
+  for(int i = 1; i < n; i++){
+    if(arr[i] > arr[largest]){
+      second = largest;
+      largest = i; 
+    }
+    else if(arr[i] != arr[largest]){
+      if(second == -1 || arr[i] > arr[second]) {
+        second = i;
+      }
+    } 
+  }
+
+  if(second == -1) {
+    return -1;  
+  }  
+  return arr[second];
+}
+
+int main() {
+
+  int n;
+  cout << "Enter size: ";
+  cin >> n;  
+
+  int arr[n];
+  cout << "Enter elements: ";
+  for(int i=0; i<n; i++) {
+    cin>>arr[i];
+  }
+  
+  int res = secondLargest(arr, n);
+
+  if(res != -1) {
+    cout << "Second largest element: " << res;
+  }
+  else {
+    cout << "There is no second largest element";
+  }
+
+  return 0;
+}
+
+
+24 ) Write a C++ program to find the number of occurrences of a value in an array.
+
+#include <iostream>
+using namespace std;
+
+int findOccurrences(int arr[], int n, int x) {
+  int count = 0;
+  for(int i = 0; i < n; i++) {
+    if(arr[i] == x)
+      count++;
+  }
+  return count;
+}
+
+int main() {
+  
+  int n;
+  cout << "Enter size of array: ";
+  cin >> n;
+
+  int arr[n];
+  cout << "Enter elements: ";
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i];  
+  }
+
+  int x;
+  cout << "\nEnter element to search: ";  
+  cin >> x;
+
+  int occ = findOccurrences(arr, n, x);
+  
+  cout << x << " occurs " << occ << " times.";
+
+  return 0;  
+}
+
+
+25 ) Write a C++ program to merge two arrays into a single array.
+
+
+#include <iostream>
+using namespace std;
+
+void mergeArrays(int arr1[], int n1, int arr2[], int n2, int arr3[]) {
+  int i = 0, j = 0, k = 0;
+  
+  // traverse both arrays 
+  while(i < n1 && j < n2) {
+    if(arr1[i] < arr2[j]) {
+      arr3[k] = arr1[i];
+      i++;
+    }
+    else {
+      arr3[k] = arr2[j];
+      j++;
+    }
+    k++;
+  }
+
+  // store remaining elements of first array
+  while(i < n1) {
+    arr3[k] = arr1[i];
+    i++; k++;
+  }
+  
+  // store remaining elements of second array
+  while(j < n2) {
+    arr3[k] = arr2[j];
+    j++; k++;  
+  }
+}
+
+int main() {
+  
+  int n1, n2;
+
+  cout << "Enter size of first array: ";
+  cin >> n1;
+
+  int arr1[n1];  
+  cout << "Enter elements: ";
+  for(int i = 0; i < n1; i++) {
+    cin >> arr1[i]; 
+  }
+
+  cout << "Enter size of second array: ";
+  cin >> n2;
+
+  int arr2[n2];
+  cout << "Enter elements: ";
+  for(int i = 0; i < n2; i++) { 
+    cin >> arr2[i];
+  }
+  
+  // merged array size
+  int n3 = n1 + n2; 
+  int arr3[n3];
+
+  mergeArrays(arr1, n1, arr2, n2, arr3);
+
+  // print merged array
+  cout << "Merged Array: ";
+  for(int i = 0; i < n3; i++) {
+    cout << arr3[i] << " ";
+  }
+  
+  return 0;
+}
+
+
+26 ) Write a C++ program to create a dynamic array using pointers and display its values.
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+  int n;
+  cout << "Enter size: ";
+  cin >> n;
+
+  int* arr = new int[n];
+
+  cout << "Enter elements: " << endl;
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
+
+  cout << "Array elements: " << endl;
+  for(int i = 0; i < n; i++) {
+    cout << arr[i] << " "; 
+  }
+
+  delete [] arr;
+  
+  return 0;
+}
+
+
+27 ) Write a C++ program to create a dynamic two-dimensional array using pointers and 
+display its values.
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+  int rows, cols;
+
+  cout << "Enter rows and columns: ";
+  cin >> rows >> cols;
+
+  // allocate memory dynamically 
+  int** arr = new int*[rows];
+  for(int i=0; i<rows; i++) {
+    arr[i] = new int[cols]; 
+  }
+
+  cout << "Enter elements: " << endl;
+  
+  // input elements  
+  for(int i=0; i<rows; i++) {
+    for(int j=0; j<cols; j++) {
+      cin >> arr[i][j];
+    }
+  }
+  
+  cout << "2D array elements: " << endl;
+  
+  // print array 
+  for(int i=0; i<rows; i++) {
+    for(int j=0; j<cols; j++) {
+      cout << arr[i][j] << " "; 
+    }
+    cout << endl;  
+  }
+
+  // release memory
+  for(int i=0; i<rows; i++)
+   delete [] arr[i];
+
+  delete [] arr;
+  
+  return 0;
+}
+
+
