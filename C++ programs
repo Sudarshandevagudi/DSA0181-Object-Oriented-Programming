@@ -922,3 +922,127 @@ int main() {
 }
 
 
+28 ) Write a C++ program to add 2 matrics.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  // Declare variables for matrix dimensions
+  int rows, cols;
+
+  // Get matrix dimensions from the user
+  cout << "Enter number of rows: "; 
+  cin >> rows;
+  cout << "Enter number of columns: "; 
+  cin >> cols;
+  
+  // Declare matrices for input
+  int mat1[rows][cols];
+  int mat2[rows][cols];
+  
+  // Read elements of matrix 1 from the user
+  cout << "Enter elements of matrix 1:" << endl;
+  for(int i = 0; i < rows; i++) {
+    for(int j = 0; j < cols; j++) {
+      cin >> mat1[i][j]; 
+    }
+  }
+
+  // Read elements of matrix 2 from the user
+  cout << "Enter elements of matrix 2:" << endl;
+  for(int i = 0; i < rows; i++) {
+    for(int j = 0; j < cols; j++) {
+      cin >> mat2[i][j];
+    }
+  }
+
+  // Declare matrix for the sum of matrices
+  int sum[rows][cols];
+
+  // Perform addition of corresponding elements
+  for(int i = 0; i < rows; i++) {
+    for(int j = 0; j < cols; j++) {
+      sum[i][j] = mat1[i][j] + mat2[i][j];
+    }
+  }
+
+  // Print the sum matrix
+  cout << "Sum of matrices:" << endl;
+  for(int i = 0; i < rows; i++) {
+    for(int j = 0; j < cols; j++) {
+      cout << sum[i][j] << " "; 
+    }
+    cout << endl; 
+  }
+
+  return 0;
+}
+
+
+29) multiply two matrices
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int r1, c1, r2, c2;
+
+  // Get matrix 1 dimensions
+  cout << "Enter number of rows and columns for first matrix: ";
+  cin >> r1 >> c1;
+
+  // Get matrix 2 dimensions 
+  cout << "Enter number of rows and columns for second matrix: ";
+  cin >> r2 >> c2;
+
+  // Check if matrices can be multiplied
+  if(c1 != r2) {
+    cout << "Matrices cannot be multiplied";
+    return 0;
+  }
+
+  // Declare matrices
+  int mat1[r1][c1]; 
+  int mat2[r2][c2];
+  int result[r1][c2];
+
+  // Read matrix 1
+  cout << "Enter elements of matrix 1:" << endl;
+  for(int i=0; i<r1; i++) {
+    for(int j=0; j<c1; j++) {
+      cin >> mat1[i][j];
+    }
+  }
+  
+  // Read matrix 2
+  cout << "Enter elements of matrix 2:" << endl;
+  for(int i=0; i<r2; i++) {
+    for(int j=0; j<c2; j++) {
+      cin >> mat2[i][j];
+    }
+  }
+
+  // Perform multiplication
+  for(int i=0; i<r1; i++) {
+    for(int j=0; j<c2; j++) {
+      result[i][j] = 0;
+      for(int k=0; k<c1; k++) {
+        result[i][j] += mat1[i][k] * mat2[k][j];
+      }
+    }
+  }
+
+  // Print result
+  cout << "Resultant matrix: " << endl;
+  for(int i=0; i<r1; i++) {
+    for(int j=0; j<c2; j++){
+      cout << result[i][j] << " "; 
+    }
+    cout << endl;
+  }
+
+  return 0;
+}
+
