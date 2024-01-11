@@ -1047,4 +1047,1395 @@ int main() {
 }
 
 
-30 ) 
+30 ) Find factorial using function
+
+
+
+#include <iostream>
+using namespace std;
+
+int factorial(int n) {
+  int result = 1;
+  for (int i = 2; i <= n; i++) {
+    result *= i; 
+  }
+  return result; 
+}
+
+int main() {
+  int num;
+  cout << "Enter a positive integer: ";
+  cin >> num;
+  
+  int fact = factorial(num);
+  
+  cout << "Factorial of " << num << " = " << fact; 
+  return 0;
+}
+
+
+31 ) Find prime number using function
+
+
+#include <iostream>
+using namespace std;
+
+bool isPrime(int n) {
+  if(n <= 1) {
+    return false;
+  }
+  for(int i = 2; i*i <= n; i++) {
+    if(n % i == 0) {
+      return false; 
+    }
+  }
+  return true;
+}
+
+int main() {
+  int num;
+  cout << "Enter a positive integer: ";
+  cin >> num;
+  
+  if(isPrime(num)) {
+    cout << num << " is prime."; 
+  }
+  else {
+    cout << num << " is not prime.";
+  }
+
+  return 0;
+}
+
+
+32 ) Find the reverse of a string using function
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string reverseString(string str) {
+  int n = str.length();
+  string reversed = "";
+  for(int i = n - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+}
+
+int main() {
+  string input, result;
+  
+  cout << "Enter a string: ";
+  getline(cin, input);
+  
+  result = reverseString(input);
+  
+  cout << "Reversed string is: " << result;
+
+  return 0;
+}
+
+
+
+33 ) Find minimum and maximum element in an array using function
+
+
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int findMin(int[], int); 
+int findMax(int[], int);
+
+int main() {
+  int n; 
+  cout << "Enter size of array: ";
+  cin >> n;
+
+  int arr[n];  
+  cout << "Enter elements:" << endl;
+  for(int i = 0; i < n; i++) {
+    cin >> arr[i]; 
+  }
+
+  int min = findMin(arr, n);
+  int max = findMax(arr, n);
+  
+  cout << "Minimum element is " << min << endl;
+  cout << "Maximum element is " << max;
+
+  return 0;
+}
+
+
+int findMin(int arr[], int n) {
+  int min = INT_MAX;
+  for(int i = 0; i < n; i++) {
+    if(arr[i] < min) {
+      min = arr[i]; 
+    }
+  }
+  return min; 
+}
+
+
+int findMax(int arr[], int n) {
+  int max = INT_MIN; 
+  for(int i = 0; i < n; i++) {
+    if(arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+
+34 ) Find GCD of two number using function
+
+
+#include <iostream>
+using namespace std;
+
+
+int findGCD(int a, int b) {
+  if (b == 0) 
+    return a;
+  else
+    return findGCD(b, a % b); 
+}
+
+int main() {
+  
+  int num1, num2;
+  
+  cout << "Enter two numbers: ";
+  cin >> num1 >> num2;
+  
+  int gcd = findGCD(num1, num2);
+  
+  cout << "GCD of " << num1 << " and " << num2 << " is " << gcd;
+
+  return 0;
+}
+
+35 ) Function to count the no of elements in a string
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int countChars(string str) {
+  int count = 0;
+  for(int i = 0; str[i] != '\0'; i++) {
+    count++;
+  }
+  return count;
+}
+
+int main() {
+  string str;
+  cout << "Enter a string: ";
+  getline(cin, str);
+
+  int numChars = countChars(str);
+
+  cout << "Number of characters in the string: " << numChars;
+  
+  return 0;
+}
+
+
+
+36 ) Convert Celsius and Fahrenheit using function
+
+
+#include <iostream>
+using namespace std;
+
+
+double celsiusToFahrenheit(double celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+double fahrenheitToCelsius(double fahrenheit) {
+  return (fahrenheit - 32) * 5/9; 
+}
+
+int main() {
+  double celsius, fahrenheit;
+  
+  cout << "Enter temperature in Celsius: ";
+  cin >> celsius;
+  
+  fahrenheit = celsiusToFahrenheit(celsius);
+  cout << celsius << " Celsius = " << fahrenheit << " Fahrenheit" << endl; 
+
+  cout << "Enter temperature in Fahrenheit: ";
+  cin >> fahrenheit;
+  
+  celsius = fahrenheitToCelsius(fahrenheit);
+  cout << fahrenheit << " Fahrenheit = " << celsius << " Celsius";
+  
+  return 0; 
+}
+
+
+37 ) Find the area of a circle using function
+
+
+#include <iostream>
+using namespace std;
+
+
+double calculateArea(double radius) {
+  return 3.14 * radius * radius;
+}
+
+int main() {
+  double radius;
+  
+  cout << "Enter radius of circle: ";
+  cin >> radius;
+
+ 
+  double area = calculateArea(radius); 
+  
+  cout << "Area = " << area;
+  
+  return 0;
+}
+
+38 ) Check whether the string is palindrome or not
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+bool isPalindrome(string str) {
+
+
+  int i = 0;
+  int j = str.length() - 1;
+  
+  while(i < j) {
+
+    if(str[i] != str[j])
+      return false;
+    i++;
+    j--;
+  }
+
+  return true;
+}
+
+int main() {
+  string str;
+
+  cout << "Enter a string: ";
+  cin >> str;
+
+  if(isPalindrome(str)) {
+   cout << str << " is Palindrome"; 
+  }
+  else {
+    cout << str << " is not Palindrome";
+  }
+
+  return 0;
+}
+
+
+39 ) Check whether the string is palindrome or not
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n, m;
+  cout << "Enter number of rows and columns of matrix: ";
+  cin >> n >> m;
+  
+  int mat[n][m];
+  
+  cout << "Enter elements of matrix:" << endl;
+  
+  for(int i=0; i<n; i++) {
+    for(int j=0; j<m; j++) {
+      cin >> mat[i][j];
+    }
+  }
+  
+  int d1 = 0, d2 = 0;
+  
+  for(int i=0; i<n; i++) {
+    for(int j=0; j<m; j++) {
+      if(i==j)
+        d1 += mat[i][j];
+      if(i+j == n-1)
+        d2 += mat[i][j];
+    }
+  }
+  
+  cout << "Sum of Primary Diagonal: " << d1 << endl;
+  cout << "Sum of Secondary Diagonal: " << d2 << endl;
+
+  return 0;
+}
+
+
+40 ) Person, Student and Teacher classes with get/set member functions:
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+    string gender;
+
+public:
+    // Constructors
+    Person() : age(0) {}
+    Person(string n, int a, string g) : name(n), age(a), gender(g) {}
+
+    // Getter and setter functions
+    void setName(string n) {
+        name = n;
+    }
+    string getName() const {
+        return name;
+    }
+
+    void setAge(int a) {
+        age = a;
+    }
+    int getAge() const {
+        return age;
+    }
+
+    void setGender(string g) {
+        gender = g;
+    }
+    string getGender() const {
+        return gender;
+    }
+};
+
+class Student : public Person {
+private:
+    int rollNo;
+    string studentClass;
+
+public:
+    // Constructors
+    Student() : rollNo(0) {}
+    Student(string n, int a, string g, int r, string c) : Person(n, a, g), rollNo(r), studentClass(c) {}
+
+    // Getter and setter functions for Student class
+    void setRollNo(int r) {
+        rollNo = r;
+    }
+    int getRollNo() const {
+        return rollNo;
+    }
+
+    void setClass(string c) {
+        studentClass = c;
+    }
+    string getClass() const {
+        return studentClass;
+    }
+};
+
+class Teacher : public Person {
+private:
+    string subject;
+    double salary;
+
+public:
+    // Constructors
+    Teacher() : salary(0.0) {}
+    Teacher(string n, int a, string g, string s, double sal) : Person(n, a, g), subject(s), salary(sal) {}
+
+    // Getter and setter functions for Teacher class
+    void setSubject(string s) {
+        subject = s;
+    }
+    string getSubject() const {
+        return subject;
+    }
+
+    void setSalary(double sal) {
+        salary = sal;
+    }
+    double getSalary() const {
+        return salary;
+    }
+};
+
+int main() {
+    Student s1("John", 16, "Male", 15, "X");
+    Teacher t1("Jane", 40, "Female", "History", 35000.0);
+
+    // Display student information
+    cout << "Student Information:" << endl;
+    cout << "Name: " << s1.getName() << endl;
+    cout << "Age: " << s1.getAge() << endl;
+    cout << "Gender: " << s1.getGender() << endl;
+    cout << "Roll No: " << s1.getRollNo() << endl;
+    cout << "Class: " << s1.getClass() << endl;
+
+    // Display teacher information
+    cout << "\nTeacher Information:" << endl;
+    cout << "Name: " << t1.getName() << endl;
+    cout << "Age: " << t1.getAge() << endl;
+    cout << "Gender: " << t1.getGender() << endl;
+    cout << "Subject: " << t1.getSubject() << endl;
+    cout << "Salary: $" << t1.getSalary() << endl;
+
+    return 0;
+}
+
+
+41 )  Create a base class called Shape with data members for height and width. Derive two 
+classes Rectangle and Triangle from the base class. Write member functions to calculate the 
+area and perimeter of each class.
+
+
+#include <iostream>
+#include <cmath>  // Include this header for the 'sqrt' function
+using namespace std;
+
+class Shape {
+protected:
+    double height;
+    double width;
+
+public:
+    // Constructors
+    Shape() : height(0.0), width(0.0) {}
+    Shape(double h, double w) : height(h), width(w) {}
+
+    // Virtual functions for area and perimeter
+    virtual double calculateArea() const = 0;
+    virtual double calculatePerimeter() const = 0;
+};
+
+class Rectangle : public Shape {
+public:
+    // Constructors
+    Rectangle() : Shape() {}
+    Rectangle(double h, double w) : Shape(h, w) {}
+
+    // Override virtual functions for Rectangle
+    double calculateArea() const override {
+        return height * width;
+    }
+
+    double calculatePerimeter() const override {
+        return 2 * (height + width);
+    }
+};
+
+class Triangle : public Shape {
+public:
+    // Constructors
+    Triangle() : Shape() {}
+    Triangle(double h, double w) : Shape(h, w) {}
+
+    // Override virtual functions for Triangle
+    double calculateArea() const override {
+        return 0.5 * height * width;
+    }
+
+    double calculatePerimeter() const override {
+        // Assuming it's an isosceles triangle for simplicity
+        double hypotenuse = sqrt(height * height + 0.25 * width * width);
+        return height + width + hypotenuse;
+    }
+};
+
+int main() {
+    Rectangle rectangle(5.0, 3.0);
+    Triangle triangle(4.0, 6.0);
+
+    // Display rectangle information
+    cout << "Rectangle Information:" << endl;
+    cout << "Area: " << rectangle.calculateArea() << endl;
+    cout << "Perimeter: " << rectangle.calculatePerimeter() << endl;
+
+    // Display triangle information
+    cout << "\nTriangle Information:" << endl;
+    cout << "Area: " << triangle.calculateArea() << endl;
+    cout << "Perimeter: " << triangle.calculatePerimeter() << endl;
+
+    return 0;
+}
+
+
+
+42 ) Create a base class called Animal with data members for name, species, and age. Derive 
+two classes Cat and Dog from the base class. The Cat class should have additional data 
+members for color and breed, while the Dog class should have additional data members for 
+weight and breed. Write member functions to get and set the data members for each class.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Animal {
+protected:
+    string name;
+    string species;
+    int age;
+
+public:
+    // Constructors
+    Animal() : age(0) {}
+    Animal(string n, string s, int a) : name(n), species(s), age(a) {}
+
+    // Getter and setter functions
+    void setName(string n) {
+        name = n;
+    }
+    string getName() const {
+        return name;
+    }
+
+    void setSpecies(string s) {
+        species = s;
+    }
+    string getSpecies() const {
+        return species;
+    }
+
+    void setAge(int a) {
+        age = a;
+    }
+    int getAge() const {
+        return age;
+    }
+};
+
+class Cat : public Animal {
+private:
+    string color;
+    string breed;
+
+public:
+    // Constructors
+    Cat() : Animal() {}
+    Cat(string n, string s, int a, string c, string b) : Animal(n, s, a), color(c), breed(b) {}
+
+    // Getter and setter functions for Cat class
+    void setColor(string c) {
+        color = c;
+    }
+    string getColor() const {
+        return color;
+    }
+
+    void setBreed(string b) {
+        breed = b;
+    }
+    string getBreed() const {
+        return breed;
+    }
+};
+
+class Dog : public Animal {
+private:
+    double weight;
+    string breed;
+
+public:
+    // Constructors
+    Dog() : Animal(), weight(0.0) {}
+    Dog(string n, string s, int a, double w, string b) : Animal(n, s, a), weight(w), breed(b) {}
+
+    // Getter and setter functions for Dog class
+    void setWeight(double w) {
+        weight = w;
+    }
+    double getWeight() const {
+        return weight;
+    }
+
+    void setBreed(string b) {
+        breed = b;
+    }
+    string getBreed() const {
+        return breed;
+    }
+};
+
+int main() {
+    Cat cat1("Whiskers", "Feline", 3, "Gray", "Persian");
+    Dog dog1("Buddy", "Canine", 2, 15.5, "Labrador");
+
+    // Display cat information
+    cout << "Cat Information:" << endl;
+    cout << "Name: " << cat1.getName() << endl;
+    cout << "Species: " << cat1.getSpecies() << endl;
+    cout << "Age: " << cat1.getAge() << endl;
+    cout << "Color: " << cat1.getColor() << endl;
+    cout << "Breed: " << cat1.getBreed() << endl;
+
+    // Display dog information
+    cout << "\nDog Information:" << endl;
+    cout << "Name: " << dog1.getName() << endl;
+    cout << "Species: " << dog1.getSpecies() << endl;
+    cout << "Age: " << dog1.getAge() << endl;
+    cout << "Weight: " << dog1.getWeight() << " kg" << endl;
+    cout << "Breed: " << dog1.getBreed() << endl;
+
+    return 0;
+}
+
+
+43 )  Create a base class called Vehicle with data members for make, model, and year. Derive 
+two classes Car and Truck from the base class. The Car class should have additional data 
+members for seating capacity and fuel type, while the Truck class should have additional data 
+members for payload capacity and towing capacity. Write member functions to get and set the 
+data members for each class.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Vehicle {
+protected:
+    string make;
+    string model;
+    int year;
+
+public:
+    // Constructors
+    Vehicle() : year(0) {}
+    Vehicle(string mk, string mdl, int yr) : make(mk), model(mdl), year(yr) {}
+
+    // Getter and setter functions
+    void setMake(string mk) {
+        make = mk;
+    }
+    string getMake() const {
+        return make;
+    }
+
+    void setModel(string mdl) {
+        model = mdl;
+    }
+    string getModel() const {
+        return model;
+    }
+
+    void setYear(int yr) {
+        year = yr;
+    }
+    int getYear() const {
+        return year;
+    }
+};
+
+class Car : public Vehicle {
+private:
+    int seatingCapacity;
+    string fuelType;
+
+public:
+    // Constructors
+    Car() : Vehicle(), seatingCapacity(0) {}
+    Car(string mk, string mdl, int yr, int seats, string fuel) : Vehicle(mk, mdl, yr), seatingCapacity(seats), fuelType(fuel) {}
+
+    // Getter and setter functions for Car class
+    void setSeatingCapacity(int seats) {
+        seatingCapacity = seats;
+    }
+    int getSeatingCapacity() const {
+        return seatingCapacity;
+    }
+
+    void setFuelType(string fuel) {
+        fuelType = fuel;
+    }
+    string getFuelType() const {
+        return fuelType;
+    }
+};
+
+class Truck : public Vehicle {
+private:
+    double payloadCapacity;
+    double towingCapacity;
+
+public:
+    // Constructors
+    Truck() : Vehicle(), payloadCapacity(0.0), towingCapacity(0.0) {}
+    Truck(string mk, string mdl, int yr, double payload, double towing) : Vehicle(mk, mdl, yr), payloadCapacity(payload), towingCapacity(towing) {}
+
+    // Getter and setter functions for Truck class
+    void setPayloadCapacity(double payload) {
+        payloadCapacity = payload;
+    }
+    double getPayloadCapacity() const {
+        return payloadCapacity;
+    }
+
+    void setTowingCapacity(double towing) {
+        towingCapacity = towing;
+    }
+    double getTowingCapacity() const {
+        return towingCapacity;
+    }
+};
+
+int main() {
+    Car car1("Toyota", "Camry", 2020, 5, "Gasoline");
+    Truck truck1("Ford", "F-150", 2021, 1500.0, 8000.0);
+
+    // Display car information
+    cout << "Car Information:" << endl;
+    cout << "Make: " << car1.getMake() << endl;
+    cout << "Model: " << car1.getModel() << endl;
+    cout << "Year: " << car1.getYear() << endl;
+    cout << "Seating Capacity: " << car1.getSeatingCapacity() << endl;
+    cout << "Fuel Type: " << car1.getFuelType() << endl;
+
+    // Display truck information
+    cout << "\nTruck Information:" << endl;
+    cout << "Make: " << truck1.getMake() << endl;
+    cout << "Model: " << truck1.getModel() << endl;
+    cout << "Year: " << truck1.getYear() << endl;
+    cout << "Payload Capacity: " << truck1.getPayloadCapacity() << " lbs" << endl;
+    cout << "Towing Capacity: " << truck1.getTowingCapacity() << " lbs" << endl;
+
+    return 0;
+}
+
+
+44 ) Create a base class called Employee with data members for name, id, and salary. Derive 
+two classes Manager and Engineer from the base class. The Manager class should have 
+additional data members for department and bonus, while the Engineer class should have 
+additional data members for specialty and hours. Write member functions to get and set the 
+data members for each class.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+protected:
+    string name;
+    int id;
+    double salary;
+
+public:
+    // Constructors
+    Employee() : id(0), salary(0.0) {}
+    Employee(string n, int i, double s) : name(n), id(i), salary(s) {}
+
+    // Getter and setter functions
+    void setName(string n) {
+        name = n;
+    }
+    string getName() const {
+        return name;
+    }
+
+    void setId(int i) {
+        id = i;
+    }
+    int getId() const {
+        return id;
+    }
+
+    void setSalary(double s) {
+        salary = s;
+    }
+    double getSalary() const {
+        return salary;
+    }
+};
+
+class Manager : public Employee {
+private:
+    string department;
+    double bonus;
+
+public:
+    // Constructors
+    Manager() : Employee(), bonus(0.0) {}
+    Manager(string n, int i, double s, string dept, double b) : Employee(n, i, s), department(dept), bonus(b) {}
+
+    // Getter and setter functions for Manager class
+    void setDepartment(string dept) {
+        department = dept;
+    }
+    string getDepartment() const {
+        return department;
+    }
+
+    void setBonus(double b) {
+        bonus = b;
+    }
+    double getBonus() const {
+        return bonus;
+    }
+};
+
+class Engineer : public Employee {
+private:
+    string specialty;
+    int hours;
+
+public:
+    // Constructors
+    Engineer() : Employee(), hours(0) {}
+    Engineer(string n, int i, double s, string spec, int h) : Employee(n, i, s), specialty(spec), hours(h) {}
+
+    // Getter and setter functions for Engineer class
+    void setSpecialty(string spec) {
+        specialty = spec;
+    }
+    string getSpecialty() const {
+        return specialty;
+    }
+
+    void setHours(int h) {
+        hours = h;
+    }
+    int getHours() const {
+        return hours;
+    }
+};
+
+int main() {
+    Manager manager1("John Doe", 101, 80000.0, "Marketing", 5000.0);
+    Engineer engineer1("Jane Smith", 201, 70000.0, "Software", 40);
+
+    // Display manager information
+    cout << "Manager Information:" << endl;
+    cout << "Name: " << manager1.getName() << endl;
+    cout << "ID: " << manager1.getId() << endl;
+    cout << "Salary: $" << manager1.getSalary() << endl;
+    cout << "Department: " << manager1.getDepartment() << endl;
+    cout << "Bonus: $" << manager1.getBonus() << endl;
+
+    // Display engineer information
+    cout << "\nEngineer Information:" << endl;
+    cout << "Name: " << engineer1.getName() << endl;
+    cout << "ID: " << engineer1.getId() << endl;
+    cout << "Salary: $" << engineer1.getSalary() << endl;
+    cout << "Specialty: " << engineer1.getSpecialty() << endl;
+    cout << "Hours: " << engineer1.getHours() << " hours/week" << endl;
+
+    return 0;
+}
+
+
+45 ) Create a base class called Shape with a virtual function area(). Derive two classes 
+Rectangle and Circle from the base class. Implement the area() function for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Shape {
+  public:
+    virtual double area() = 0; 
+};
+
+class Rectangle: public Shape {
+  private:
+    double length;
+    double breadth;
+
+  public:
+    Rectangle(double l, double b) {
+      length = l;
+      breadth = b;
+    }
+
+    double area() {
+      return length * breadth;
+    }
+};
+
+class Circle: public Shape {
+  private: 
+   double radius;
+
+  public:
+    Circle(double r) {
+      radius = r;
+    }
+
+    double area() {
+      return 3.14 * radius * radius;
+    }
+};
+
+int main() {
+  Rectangle r(5, 3); 
+  Circle c(4);
+
+  Shape *s1 = &r;
+  Shape *s2 = &c;
+
+  cout << "Rectangle area: " << s1->area() << endl; 
+  cout << "Circle area: " << s2->area() << endl;
+  
+  return 0;
+}
+
+
+46 ) Create a base class called Animal with a virtual function speak(). Derive two classes Cat 
+and Dog from the base class. Implement the speak() function for each class
+
+
+#include <iostream>
+using namespace std;
+
+class Animal {
+  public: 
+    virtual void speak() = 0;
+};
+
+class Dog : public Animal {
+  public:
+    void speak() {
+      cout << "Woof woof!!" << endl; 
+    }
+};
+
+class Cat : public Animal {
+ public:
+  void speak() {
+    cout << "Meow meow!!" << endl;
+  }  
+};
+
+int main() {
+  Dog d;
+  Cat c;
+
+  Animal *a1 = &d;
+  Animal *a2 = &c;
+
+  a1->speak();
+  a2->speak();
+
+  return 0;
+}
+
+47 ) Create a base class called Employee with a virtual function calculatePay(). Derive two 
+classes Manager and Engineer from the base class. Implement the calculatePay() function for 
+each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+  public:
+   virtual double calculatePay() = 0;    
+};
+
+class Manager : public Employee {
+ private:
+   double basicPay;
+
+ public:
+   Manager(double basic) {
+     basicPay = basic;  
+   }
+   double calculatePay() {
+     return basicPay;
+   }
+};
+
+class Engineer : public Employee {
+ private:
+   double basicPay;
+   double allowance;
+
+ public:
+  Engineer(double basic, double allow) {
+    basicPay = basic;
+    allowance = allow;
+  }
+  
+  double calculatePay() {
+    return basicPay + allowance; 
+  }
+};
+
+int main() {
+  Manager m(50000);
+  Engineer e(30000, 4000);
+
+  Employee* emp1 = &m;
+  Employee* emp2 = &e;
+
+  cout << "Manager's pay: " << emp1->calculatePay() << endl; 
+  cout << "Engineer's pay: " << emp2->calculatePay() << endl;
+
+  return 0;  
+}
+
+
+48 ) Create a base class called Vehicle with a virtual function drive(). Derive two classes Car 
+and Truck from the base class. Implement the drive() function for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+  public:
+    virtual void drive() = 0; 
+};
+
+class Car: public Vehicle {
+  public:
+    void drive() {
+      cout << "Driving the car" << endl;
+    }
+};
+
+class Truck: public Vehicle {
+  public:
+    void drive() {
+      cout << "Driving the truck" << endl;
+    }
+};
+
+int main() {
+  Car c;
+  Truck t;
+
+  Vehicle *v1 = &c;
+  Vehicle *v2 = &t;
+
+  v1->drive();
+  v2->drive();
+  
+  return 0;
+}
+
+49 ) Create a base class called Shape with virtual functions area() and perimeter(). Derive two 
+classes Rectangle and Triangle from the base class. Implement the area() and perimeter() 
+functions for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Shape {
+  public:
+    virtual double area() = 0;
+    virtual double perimeter() = 0;
+};
+
+class Rectangle: public Shape {
+  private:
+    double length;
+    double breadth;
+
+  public:
+    Rectangle(double l, double b) {
+      length = l;
+      breadth = b;
+    }
+
+    double area() {
+      return length * breadth; 
+    }
+
+    double perimeter() {
+      return 2 * (length + breadth);
+    }
+};
+
+class Triangle: public Shape {
+  private:
+    double a, b, c;
+  
+  public:
+    Triangle(double x, double y, double z) {
+      a = x;
+      b = y; 
+      c = z;
+    }
+
+    double area() {
+      double s = (a + b + c) / 2;
+      return sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+
+    double perimeter() {
+      return a + b + c;
+    }
+};
+
+int main() {
+  Rectangle r(4, 5); 
+  Triangle t(3, 4, 5);
+
+  Shape *s1 = &r;
+  Shape *s2 = &t;
+
+  cout << "Rectangle area: " << s1->area() << endl;
+  cout << "Rectangle perimeter: " << s1->perimeter() << endl;
+
+  cout << "Triangle area: " << s2->area() << endl;
+  cout << "Triangle perimeter: " << s2->perimeter() << endl;
+  
+  return 0;
+}
+
+
+50 ) Create a base class called Animal with a virtual function move(). Derive two classes Bird
+and Fish from the base class. Implement the move() function for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Animal {
+  public:
+    virtual void move() = 0;  
+};
+
+class Bird : public Animal {
+  public:
+    void move() {
+      cout << "Flying in the sky" << endl; 
+    }
+};
+
+class Fish : public Animal { 
+ public:
+  void move() {
+    cout << "Swimming under water" << endl;  
+  }
+};
+
+int main() {
+  
+  Bird b;
+  Fish f;
+
+  Animal *a1 = &b;
+  Animal *a2 = &f;
+
+  a1->move(); //calls Bird's implementation
+  a2->move(); //calls Fish's implementation
+
+  return 0;
+}
+
+51 ) Create a base class called Person with a virtual function greet(). Derive two classes 
+Student and Teacher from the base class. Implement the greet() function for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Person {
+ public:
+  virtual void greet() = 0; 
+};
+
+class Student : public Person {
+ public:
+  void greet() {
+    cout << "Hello, I am a student." << endl; 
+  }
+};
+
+class Teacher : public Person {
+ public:
+  void greet() {
+    cout << "Hello, I am a teacher." << endl;
+  }
+};
+
+int main() {
+
+  Student s;
+  Teacher t;
+
+  Person *p1 = &s;
+  Person *p2 = &t;
+
+  p1->greet();
+  p2->greet();
+
+  return 0;
+}
+
+
+52 ) Create a base class called Shape with virtual functions area() and volume(). Derive two 
+classes Sphere and Cylinder from the base class. Implement the area() and volume() functions 
+for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Shape {
+  public:
+    virtual double area() = 0;
+    virtual double volume() = 0;  
+};
+
+class Sphere: public Shape {
+  private:
+    double radius;
+    
+  public:
+    Sphere(double r) {
+      radius = r;
+    }
+    
+    double area() {
+      return 4*3.14*radius*radius;
+    }
+    
+    double volume() {
+      return 4/3*3.14*radius*radius*radius;
+    }
+};
+
+class Cylinder: public Shape {
+  private:
+    double radius; 
+    double height;
+    
+  public:
+    Cylinder(double r, double h) {
+      radius = r;
+      height = h;
+    }
+
+    double area() {
+      return 2*3.14*radius*(radius + height);  
+    }
+
+    double volume() {
+      return 3.14*radius*radius*height;
+    }
+};  
+
+int main() {
+
+  Sphere s(5);
+  Cylinder c(3, 4);
+  
+  Shape *sh1 = &s;
+  Shape *sh2 = &c;
+  
+  cout << sh1->area() << endl;
+  cout << sh1->volume() << endl;
+  
+  cout << sh2->area() << endl;
+  cout << sh2->volume() << endl;
+
+  return 0;
+}
+
+53 ) Create a base class called Animal with a virtual function eat(). Derive two classes 
+Herbivore and Carnivore from the base class. Implement the eat() function for each class.
+
+
+#include <iostream>
+using namespace std;
+
+class Animal {
+  public:
+    virtual void eat() = 0;  
+};
+
+class Herbivore : public Animal {
+  public: 
+    void eat() {
+      cout << "Eating plants!" << endl;
+    }
+};
+
+class Carnivore : public Animal {
+  public:
+    void eat() {
+      cout << "Eating meat!" << endl; 
+    }
+};
+
+int main() {
+
+  Herbivore h;
+  Carnivore c;
+
+  Animal* a1 = &h;
+  Animal* a2 = &c;
+
+  a1->eat(); 
+  a2->eat();
+
+  return 0;
+}
+
+54 )  Create a base class called Person with a virtual function work(). Derive two classes 
+Employee and Manager from the base class. Implement the work() function for each class
+
+
+#include <iostream>
+using namespace std;
+
+class Person {
+  public:
+    virtual void work() = 0; 
+};
+
+class Employee: public Person {
+  public:
+    void work() {
+      cout << "Writing code, testing, fixing bugs" << endl; 
+    }  
+};
+
+class Manager: public Person {
+ public:
+  void work() {
+    cout << "Organizing work, managing teams, scheduling tasks" << endl;
+  }
+};
+
+int main() {
+  
+  Employee e;
+  Manager m;
+
+  Person* p1 = &e;
+  Person* p2 = &m;
+
+  p1->work();
+  p2->work();
+  
+  return 0;
+}
+
