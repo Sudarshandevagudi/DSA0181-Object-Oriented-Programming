@@ -3237,3 +3237,1130 @@ int main() {
     myStudent.displayStudentInfo();
     return 0;
 }
+
+
+77 )  Write a c++ program to overload the ++ operator to increment a variable
+
+#include <iostream>
+
+using namespace std;
+
+class Counter {
+private:
+    int count;
+
+public:
+    Counter() : count(0) {}
+
+    Counter operator++() {
+        ++count;
+        return *this;
+    }
+
+    Counter operator++(int) {
+        Counter temp = *this;
+        ++count;
+        return temp;
+    }
+
+    void display() {
+        cout << "Count: " << count << endl;
+    }
+};
+
+int main() {
+    Counter myCounter;
+
+    ++myCounter;
+    myCounter.display();
+
+    myCounter++;
+    myCounter.display();
+
+    return 0;
+}
+
+
+78 ) Write a c++ program to overload the + operator to add two variables
+
+
+#include <iostream>
+using namespace std;
+
+class Adder {
+private:
+    int value;
+
+public:
+    Adder() : value(0) {}
+
+    Adder operator+(const Adder& other) {
+        Adder result;
+        result.value = this->value + other.value;
+        return result;
+    }
+
+    void setValue(int val) {
+        value = val;
+    }
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    Adder num1, num2, sum;
+
+    cout << "Enter the first number: ";
+    int input1;
+    cin >> input1;
+    num1.setValue(input1);
+
+    cout << "Enter the second number: ";
+    int input2;
+    cin >> input2;
+    num2.setValue(input2);
+
+    sum = num1 + num2;
+
+    cout << "Sum of the two numbers: ";
+    sum.display();
+
+    return 0;
+}
+
+79 ) Write a c++ program to overload the << operator to print contents of a user
+defined class
+
+#include <iostream>
+
+using namespace std;
+
+class MyClass {
+private:
+    int data;
+
+public:
+    MyClass() : data(0) {}
+
+    void setData(int value) {
+        data = value;
+    }
+
+    
+    friend ostream& operator<<(ostream& os, const MyClass& obj) {
+        os << "Data: " << obj.data;
+        return os;
+    }
+};
+
+int main() {
+    MyClass obj;
+
+    cout << "Enter data for the object: ";
+    int inputData;
+    cin >> inputData;
+
+    obj.setData(inputData);
+
+    cout << "Object details: " << obj << endl;
+
+    return 0;
+}
+
+80 ) Write a c++ program to overload the == operator to compare two objects of a
+user defined class
+
+#include <iostream>
+
+using namespace std;
+
+class MyClass {
+private:
+    int data;
+
+public:
+    MyClass() : data(0) {}
+
+    void setData(int value) {
+        data = value;
+    }
+
+    
+    bool operator==(const MyClass& obj) const {
+        return data == obj.data;
+    }
+};
+
+int main() {
+    MyClass obj1, obj2;
+
+    cout << "Enter data for the first object: ";
+    int inputData1;
+    cin >> inputData1;
+
+    obj1.setData(inputData1);
+
+    cout << "Enter data for the second object: ";
+    int inputData2;
+    cin >> inputData2;
+
+    obj2.setData(inputData2);
+
+    if (obj1 == obj2) {
+        cout << "Both objects have the same data." << endl;
+    } else {
+        cout << "Objects have different data." << endl;
+    }
+
+    return 0;
+}
+
+81 ) Write a c++ program to overload the * operator to multiply two matrices
+
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Matrix {
+private:
+    vector<vector<int>> data;
+    int rows, cols;
+
+public:
+    Matrix(int r, int c) : rows(r), cols(c), data(r, vector<int>(c, 0)) {}
+
+    Matrix operator*(const Matrix& other) {
+        Matrix result(rows, other.cols);
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < other.cols; ++j) {
+                for (int k = 0; k < cols; ++k) {
+                    result.data[i][j] += data[i][k] * other.data[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    void setData() {
+        cout << "Enter matrix elements row-wise:" << endl;
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                cin >> data[i][j];
+            }
+        }
+    }
+
+    void display() {
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                cout << data[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    int m, n, p;
+
+    cout << "Enter dimensions of the first matrix (m x n): ";
+    cin >> m >> n;
+    Matrix matrix1(m, n);
+    matrix1.setData();
+
+    cout << "Enter dimensions of the second matrix (n x p): ";
+    cin >> n >> p;
+    Matrix matrix2(n, p);
+    matrix2.setData();
+
+    Matrix result = matrix1 * matrix2;
+
+    cout << "Resultant matrix after multiplication:" << endl;
+    result.display();
+
+    return 0;
+}
+
+82 ) rite a c++ program to overload the [] operator to access the elements in an array
+using index values
+
+#include <iostream>
+
+using namespace std;
+
+class Array {
+private:
+    int size;
+    int* data;
+
+public:
+    Array(int s) : size(s), data(new int[s]) {}
+
+    int& operator[](int index) {
+        if (index >= 0 && index < size) {
+            return data[index];
+        } else {
+            cerr << "Error: Index out of bounds." << endl;
+            exit(1);
+        }
+    }
+
+    ~Array() {
+        delete[] data;
+    }
+};
+
+int main() {
+    int arraySize;
+
+    cout << "Enter the size of the array: ";
+    cin >> arraySize;
+
+    Array myArray(arraySize);
+
+    cout << "Enter " << arraySize << " elements for the array:" << endl;
+    for (int i = 0; i < arraySize; ++i) {
+        cin >> myArray[i];
+    }
+
+    cout << "Array elements: ";
+    for (int i = 0; i < arraySize; ++i) {
+        cout << myArray[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+83 ) Write a c++ program to overload the () to call a function with arguments
+
+#include <iostream>
+
+using namespace std;
+
+class FunctionCaller {
+public:
+    int operator()(int x, int y) {
+        return x + y;
+    }
+};
+
+int main() {
+    FunctionCaller addFunction;
+
+    int arg1, arg2;
+    cout << "Enter the first argument: ";
+    cin >> arg1;
+    cout << "Enter the second argument: ";
+    cin >> arg2;
+
+    int result = addFunction(arg1, arg2);
+
+    cout << "Result of the function call: " << result << endl;
+
+    return 0;
+}
+
+84 ) rite a c++ program to overload the – operator to subtract two variables
+
+
+#include <iostream>
+
+using namespace std;
+
+class Subtractor {
+private:
+    int value;
+
+public:
+    Subtractor(int initial) : value(initial) {}
+
+    Subtractor operator-(const Subtractor& other) {
+        Subtractor result(value - other.value);
+        return result;
+    }
+
+    int getValue() const {
+        return value;
+    }
+};
+
+int main() {
+    int firstValue, secondValue;
+
+    cout << "Enter the first value: ";
+    cin >> firstValue;
+
+    cout << "Enter the second value: ";
+    cin >> secondValue;
+
+    Subtractor firstOperand(firstValue);
+    Subtractor secondOperand(secondValue);
+
+    Subtractor result = firstOperand - secondOperand;
+
+    cout << "Result of subtraction: " << result.getValue() << endl;
+
+    return 0;
+}
+
+
+85 ) write a c++ program to overload a function to add two integer numbers and two
+floating point number separately
+
+#include <iostream>
+
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+float add(float x, float y) {
+    return x + y;
+}
+
+int main() {
+    int int1, int2;
+    float float1, float2;
+
+    cout << "Enter two integers for addition: ";
+    cin >> int1 >> int2;
+
+    cout << "Enter two floating-point numbers for addition: ";
+    cin >> float1 >> float2;
+
+    int intSum = add(int1, int2);
+    float floatSum = add(float1, float2);
+
+    cout << "Sum of integers: " << intSum << endl;
+    cout << "Sum of floating-point numbers: " << floatSum << endl;
+
+    return 0;
+}
+
+86 ) Write a c++ program to overload the += operator to add two objects of a user
+defined class
+
+#include <iostream>
+
+using namespace std;
+
+class MyClass {
+private:
+    int value;
+
+public:
+    MyClass(int initial) : value(initial) {}
+
+    MyClass& operator+=(const MyClass& other) {
+        value += other.value;
+        return *this;
+    }
+
+    int getValue() const {
+        return value;
+    }
+};
+
+int main() {
+    int initialValue1, initialValue2;
+
+    cout << "Enter the initial value for the first object: ";
+    cin >> initialValue1;
+    MyClass obj1(initialValue1);
+
+    cout << "Enter the initial value for the second object: ";
+    cin >> initialValue2;
+    MyClass obj2(initialValue2);
+
+    obj1 += obj2;
+
+    cout << "Value of the first object after += operation: " << obj1.getValue() << endl;
+
+    return 0;
+}
+
+87 ) write a c++ program to overload a function to find the maximum value from two
+integer numbers and two floating point number, and two characters separately
+
+#include <iostream>
+
+using namespace std;
+
+int findMax(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+float findMax(float x, float y) {
+    return (x > y) ? x : y;
+}
+
+char findMax(char ch1, char ch2) {
+    return (ch1 > ch2) ? ch1 : ch2;
+}
+
+int main() {
+    int int1, int2;
+    float float1, float2;
+    char char1, char2;
+
+    cout << "Enter two integers: ";
+    cin >> int1 >> int2;
+
+    cout << "Enter two floating-point numbers: ";
+    cin >> float1 >> float2;
+
+    cout << "Enter two characters: ";
+    cin >> char1 >> char2;
+
+    int maxInt = findMax(int1, int2);
+    float maxFloat = findMax(float1, float2);
+    char maxChar = findMax(char1, char2);
+
+    cout << "Maximum of integers: " << maxInt << endl;
+    cout << "Maximum of floating-point numbers: " << maxFloat << endl;
+    cout << "Maximum of characters: " << maxChar << endl;
+
+    return 0;
+}
+
+88 )  write a c++ program to overload a function to concatenate two strings and two
+characters arrays separately
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+string concatenate(const string& str1, const string& str2) {
+    return str1 + str2;
+}
+
+char* concatenate(const char* arr1, const char* arr2) {
+    int len1 = strlen(arr1);
+    int len2 = strlen(arr2);
+
+    char* result = new char[len1 + len2 + 1];
+    
+    strcpy(result, arr1);
+    strcat(result, arr2);
+
+    return result;
+}
+
+int main() {
+    string str1, str2;
+    cout << "Enter the first string: ";
+    getline(cin, str1);
+
+    cout << "Enter the second string: ";
+    getline(cin, str2);
+
+    string concatenatedString = concatenate(str1, str2);
+    cout << "Concatenated string: " << concatenatedString << endl;
+
+    char arr1[50], arr2[50];
+    cout << "Enter the first character array: ";
+    cin >> arr1;
+
+    cout << "Enter the second character array: ";
+    cin >> arr2;
+
+    char* concatenatedArray = concatenate(arr1, arr2);
+    cout << "Concatenated character array: " << concatenatedArray << endl;
+
+    // Deallocate memory for the concatenated character array
+    delete[] concatenatedArray;
+
+    return 0;
+}
+
+89 ) write a c++ program to overload a function to calculate the sum of two matrices
+and two arrays separately
+
+#include <iostream>
+
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+void addMatrices(int mat1[][MAX_SIZE], int mat2[][MAX_SIZE], int result[][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            result[i][j] = mat1[i][j] + mat2[i][j];
+        }
+    }
+}
+
+void addArrays(int arr1[], int arr2[], int result[], int size) {
+    for (int i = 0; i < size; ++i) {
+        result[i] = arr1[i] + arr2[i];
+    }
+}
+
+int main() {
+    int rows, cols;
+
+    cout << "Enter the number of rows for matrices and array: ";
+    cin >> rows;
+
+    cout << "Enter the number of columns for matrices: ";
+    cin >> cols;
+
+    int matrix1[MAX_SIZE][MAX_SIZE], matrix2[MAX_SIZE][MAX_SIZE], resultMatrix[MAX_SIZE][MAX_SIZE];
+    int array1[MAX_SIZE], array2[MAX_SIZE], resultArray[MAX_SIZE];
+
+    cout << "Enter elements for the first matrix:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cin >> matrix1[i][j];
+        }
+    }
+
+    cout << "Enter elements for the second matrix:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cin >> matrix2[i][j];
+        }
+    }
+
+    cout << "Enter elements for the first array:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        cin >> array1[i];
+    }
+
+    cout << "Enter elements for the second array:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        cin >> array2[i];
+    }
+
+    addMatrices(matrix1, matrix2, resultMatrix, rows, cols);
+    addArrays(array1, array2, resultArray, rows);
+
+    cout << "Sum of matrices:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cout << resultMatrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "Sum of arrays:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        cout << resultArray[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+90 ) write a c++ program to overload a function to print an integer array, a double
+array and a character array separately
+
+#include <iostream>
+
+using namespace std;
+
+void printArray(const int arr[], int size) {
+    cout << "Integer Array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void printArray(const double arr[], int size) {
+    cout << "Double Array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void printArray(const char arr[], int size) {
+    cout << "Character Array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    const int intSize = 5;
+    const int doubleSize = 5;  // Fix: Use 'int' instead of 'const double'
+    const int charSize = 5;
+
+    int intArray[intSize];
+    double doubleArray[doubleSize];
+    char charArray[charSize];
+
+    cout << "Enter " << intSize << " integers for the integer array:" << endl;
+    for (int i = 0; i < intSize; ++i) {
+        cin >> intArray[i];
+    }
+
+    cout << "Enter " << doubleSize << " doubles for the double array:" << endl;
+    for (int i = 0; i < doubleSize; ++i) {
+        cin >> doubleArray[i];
+    }
+
+    cout << "Enter " << charSize << " characters for the character array:" << endl;
+    for (int i = 0; i < charSize; ++i) {
+        cin >> charArray[i];
+    }
+
+    printArray(intArray, intSize);
+    printArray(doubleArray, doubleSize);
+    printArray(charArray, charSize);
+
+    return 0;
+}
+
+91 ) . write a c++ program to overload a function to find a factorial of an integer
+number and factorial of a floating-point number separately
+
+#include <iostream>
+
+using namespace std;
+
+unsigned long long factorial(int n) {
+    unsigned long long result = 1;
+    for (int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+double factorial(double n) {
+    double result = 1.0;
+    for (double i = 1.0; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+int main() {
+    int intNumber;
+    double doubleNumber;
+
+    cout << "Enter an integer number: ";
+    cin >> intNumber;
+
+    cout << "Enter a floating-point number: ";
+    cin >> doubleNumber;
+
+    unsigned long long intFactorial = factorial(intNumber);
+    double doubleFactorial = factorial(doubleNumber);
+
+    cout << "Factorial of " << intNumber << " (integer): " << intFactorial << endl;
+    cout << "Factorial of " << doubleNumber << " (floating-point): " << doubleFactorial << endl;
+
+    return 0;
+}
+
+92 ) write a c++ program to overload a function to sort an integer array and a double
+array
+
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+void sortArray(int arr[], int size) {
+    sort(arr, arr + size);
+}
+
+void sortArray(double arr[], int size) {
+    sort(arr, arr + size);
+}
+
+template <typename T>
+void displayArray(const T arr[], int size) {
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    const int intSize = 5;
+    const int doubleSize = 5;
+
+    int intArray[intSize];
+    double doubleArray[doubleSize];
+
+    cout << "Enter " << intSize << " integers for the integer array:" << endl;
+    for (int i = 0; i < intSize; ++i) {
+        cin >> intArray[i];
+    }
+
+    cout << "Enter " << doubleSize << " doubles for the double array:" << endl;
+    for (int i = 0; i < doubleSize; ++i) {
+        cin >> doubleArray[i];
+    }
+
+    cout << "\nOriginal Integer Array: ";
+    displayArray(intArray, intSize);
+
+    sortArray(intArray, intSize);
+
+    cout << "Sorted Integer Array: ";
+    displayArray(intArray, intSize);
+
+    cout << "\nOriginal Double Array: ";
+    displayArray(doubleArray, doubleSize);
+
+    sortArray(doubleArray, doubleSize);
+
+    cout << "Sorted Double Array: ";
+    displayArray(doubleArray, doubleSize);
+
+    return 0;
+}
+
+93 ) write a c++ program to overload a function to calculate the power of an integer
+number and power of a floating-point number separately
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+long long int power(int base, int exponent) {
+    return static_cast<long long int>(pow(base, exponent));
+}
+
+double power(double base, double exponent) {
+    return pow(base, exponent);
+}
+
+int main() {
+    int intBase, intExponent;
+    double doubleBase, doubleExponent;
+
+    cout << "Enter an integer base: ";
+    cin >> intBase;
+
+    cout << "Enter an integer exponent: ";
+    cin >> intExponent;
+
+    cout << "Enter a floating-point base: ";
+    cin >> doubleBase;
+
+    cout << "Enter a floating-point exponent: ";
+    cin >> doubleExponent;
+
+    long long int intResult = power(intBase, intExponent);
+    double doubleResult = power(doubleBase, doubleExponent);
+
+    cout << "Power of " << intBase << " raised to the power of " << intExponent << " (integer): " << intResult << endl;
+    cout << "Power of " << doubleBase << " raised to the power of " << doubleExponent << " (floating-point): " << doubleResult << endl;
+
+    return 0;
+}
+
+94 ) write a c++ program to overload a function to find an absolute value of an integer
+number and absolute value of a floating-point number separately
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int absoluteValue(int num) {
+    return abs(num);
+}
+
+double absoluteValue(double num) {
+    return abs(num);
+}
+
+int main() {
+    int intValue;
+    double doubleValue;
+
+    cout << "Enter an integer value: ";
+    cin >> intValue;
+
+    cout << "Enter a floating-point value: ";
+    cin >> doubleValue;
+
+    int absIntValue = absoluteValue(intValue);
+    double absDoubleValue = absoluteValue(doubleValue);
+
+    cout << "Absolute value of " << intValue << " (integer): " << absIntValue << endl;
+    cout << "Absolute value of " << doubleValue << " (floating-point): " << absDoubleValue << endl;
+
+    return 0;
+}
+
+95 ) Write a C++ program to create a pointer to an integer and display its value
+
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int intValue;
+
+    cout << "Enter an integer value: ";
+    cin >> intValue;
+
+    int* ptrToInt = &intValue;
+
+    cout << "Value through the pointer: " << *ptrToInt << endl;
+
+    return 0;
+}
+
+96 ) Write a C++ program to create a pointer to a float and display its value.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    float floatValue;
+
+    cout << "Enter a float value: ";
+    cin >> floatValue;
+
+    float* ptrToFloat = &floatValue;
+
+    cout << "Value through the pointer: " << *ptrToFloat << endl;
+
+    return 0;
+}
+
+97 ) Write a C++ program to create a pointer to a char and display its value.
+
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    char charValue;
+
+    cout << "Enter a char value: ";
+    cin >> charValue;
+
+    char* ptrToChar = &charValue;
+
+    cout << "Value through the pointer: " << *ptrToChar << endl;
+
+    return 0;
+}
+
+98 ) Write a C++ program to create a pointer to a double and display its value.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    double doubleValue;
+
+    cout << "Enter a double value: ";
+    cin >> doubleValue;
+
+    double* ptrToDouble = &doubleValue;
+
+    cout << "Value through the pointer: " << *ptrToDouble << endl;
+
+    return 0;
+}
+
+99 )  Write a C++ program to create a pointer to a string and display its value.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string stringValue;
+
+    cout << "Enter a string value: ";
+    getline(cin, stringValue);  // Using getline to allow input with spaces
+
+    string* ptrToString = &stringValue;
+
+    cout << "Value through the pointer: " << *ptrToString << endl;
+
+    return 0;
+}
+
+
+100 )Write a C++ program to create a pointer to an array of elements and display its
+value. 
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    const int arraySize = 5;
+    int intArray[arraySize];
+
+    cout << "Enter " << arraySize << " integer values for the array:" << endl;
+    for (int i = 0; i < arraySize; ++i) {
+        cout << "Value " << i + 1 << ": ";
+        cin >> intArray[i];
+    }
+
+    int* ptrToArray = intArray;
+
+    cout << "Values through the pointer: ";
+    for (int i = 0; i < arraySize; ++i) {
+        cout << *(ptrToArray + i) << " ";  
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+101 ) . Write a C++ program to create a pointer to an array of character and display its
+value
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    const int arraySize = 5;
+    char charArray[arraySize];
+
+    cout << "Enter " << arraySize << " characters for the array:" << endl;
+    for (int i = 0; i < arraySize; ++i) {
+        cout << "Character " << i + 1 << ": ";
+        cin >> charArray[i];
+    }
+
+    char* ptrToArray = charArray;
+
+    cout << "Values through the pointer: ";
+    for (int i = 0; i < arraySize; ++i) {
+        cout << *(ptrToArray + i) << " ";  
+    }
+    cout << endl;
+
+    return 0;
+}
+
+102 ) Write a C++ program to create a pointer to an array of floats and display its value
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    const int arraySize = 5;
+    float floatArray[arraySize];
+
+    cout << "Enter " << arraySize << " float values for the array:" << endl;
+    for (int i = 0; i < arraySize; ++i) {
+        cout << "Value " << i + 1 << ": ";
+        cin >> floatArray[i];
+    }
+
+    float* ptrToArray = floatArray;
+
+    cout << "Values through the pointer: ";
+    for (int i = 0; i < arraySize; ++i) {
+        cout << *(ptrToArray + i) << " ";  
+    }
+    cout << endl;
+
+    return 0;
+}
+
+103 ) Write a C++ program to create a pointer to an object and display its attributes.
+
+#include <iostream>
+
+using namespace std;
+
+class SampleObject {
+public:
+    int attribute1;
+    float attribute2;
+
+    SampleObject() : attribute1(0), attribute2(0.0) {}
+
+    void displayAttributes() {
+        cout << "Attribute 1: " << attribute1 << endl;
+        cout << "Attribute 2: " << attribute2 << endl;
+    }
+};
+
+int main() {
+    SampleObject myObject;
+
+    cout << "Enter an integer value for Attribute 1: ";
+    cin >> myObject.attribute1;
+
+    cout << "Enter a float value for Attribute 2: ";
+    cin >> myObject.attribute2;
+
+    SampleObject* ptrToObject = &myObject;
+
+    cout << "\nAttributes through the pointer:" << endl;
+    ptrToObject->displayAttributes();
+
+    return 0;
+}
+
+
+104 ) Write a C++ program to create a pointer to a function and call the function using
+the pointer
+
+#include <iostream>
+
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int main() {
+    int (*operationPtr)(int, int);
+
+    int choice;
+    cout << "Choose operation (1 for add, 2 for subtract): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        operationPtr = &add;
+    } else if (choice == 2) {
+        operationPtr = &subtract;
+    } else {
+        cout << "Invalid choice!" << endl;
+        return 1;
+    }
+
+    int operand1, operand2;
+    cout << "Enter two integers: ";
+    cin >> operand1 >> operand2;
+
+    int result = operationPtr(operand1, operand2);
+
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
