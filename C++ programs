@@ -4364,3 +4364,292 @@ int main() {
 
     return 0;
 }
+
+105 )Create a base class called Shape with data members for height and width. Derive
+two classes Rectangle and Triangle from the base class. Write member functions
+to calculate the area and perimeter of each class
+
+#include <iostream>
+
+using namespace std;
+
+class Shape {
+protected:
+    double height;
+    double width;
+
+public:
+    Shape(double h, double w) : height(h), width(w) {}
+
+    virtual double area() const = 0;
+    virtual double perimeter() const = 0;
+};
+
+class Rectangle : public Shape {
+public:
+    Rectangle(double h, double w) : Shape(h, w) {}
+
+    double area() const override {
+        return height * width;
+    }
+
+    double perimeter() const override {
+        return 2 * (height + width);
+    }
+};
+
+class Triangle : public Shape {
+public:
+    Triangle(double h, double w) : Shape(h, w) {}
+
+    double area() const override {
+        return 0.5 * height * width;
+    }
+
+    double perimeter() const override {
+        return 2 * width + height;
+    }
+};
+
+int main() {
+    Rectangle rectangle(4, 6);
+    cout << "Rectangle Area: " << rectangle.area() << endl;
+    cout << "Rectangle Perimeter: " << rectangle.perimeter() << endl;
+
+    Triangle triangle(3, 5);
+    cout << "Triangle Area: " << triangle.area() << endl;
+    cout << "Triangle Perimeter: " << triangle.perimeter() << endl;
+
+    return 0;
+}
+
+
+106 ) Create a base class called Animal with data members for name, species, and age.
+Derive two classes Cat and Dog from the base class. The Cat class should have
+additional data members for color and breed, while the Dog class should have
+additional data members for weight and breed. Write member functions to get
+and set the data members for each class
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Animal {
+protected:
+    string name;
+    string species;
+    int age;
+
+public:
+    Animal(string _name, string _species, int _age) : name(_name), species(_species), age(_age) {}
+
+    void setName(string _name) { name = _name; }
+    string getName() const { return name; }
+
+    void setSpecies(string _species) { species = _species; }
+    string getSpecies() const { return species; }
+
+    void setAge(int _age) { age = _age; }
+    int getAge() const { return age; }
+};
+
+class Cat : public Animal {
+private:
+    string color;
+    string breed;
+
+public:
+    Cat(string _name, string _species, int _age, string _color, string _breed)
+        : Animal(_name, _species, _age), color(_color), breed(_breed) {}
+
+    void setColor(string _color) { color = _color; }
+    string getColor() const { return color; }
+
+    void setBreed(string _breed) { breed = _breed; }
+    string getBreed() const { return breed; }
+};
+
+class Dog : public Animal {
+private:
+    double weight;
+    string breed;
+
+public:
+    Dog(string _name, string _species, int _age, double _weight, string _breed)
+        : Animal(_name, _species, _age), weight(_weight), breed(_breed) {}
+
+    void setWeight(double _weight) { weight = _weight; }
+    double getWeight() const { return weight; }
+
+    void setBreed(string _breed) { breed = _breed; }
+    string getBreed() const { return breed; }
+};
+
+int main() {
+    Cat myCat("Whiskers", "Cat", 3, "Gray", "Persian");
+    Dog myDog("Buddy", "Dog", 5, 25.5, "Golden Retriever");
+
+    cout << "Cat Name: " << myCat.getName() << endl;
+    cout << "Cat Color: " << myCat.getColor() << endl;
+
+    cout << "\nDog Name: " << myDog.getName() << endl;
+    cout << "Dog Weight: " << myDog.getWeight() << " kg" << endl;
+
+    return 0;
+}
+
+
+107 ) Create a base class called Employee with data members for name, d, and salary
+Derive two classes Manager and Engineer from the base class. The Manager class
+should have additional data members for department and bonus, while the
+Engineer class should have additional data members for specialty and hours.
+Write member functions to get and set the data members for each class
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Employee {
+protected:
+    string name;
+    int id;
+    double salary;
+
+public:
+    Employee(string _name, int _id, double _salary) : name(_name), id(_id), salary(_salary) {}
+
+    void setName(string _name) { name = _name; }
+    string getName() const { return name; }
+
+    void setId(int _id) { id = _id; }
+    int getId() const { return id; }
+
+    void setSalary(double _salary) { salary = _salary; }
+    double getSalary() const { return salary; }
+};
+
+class Manager : public Employee {
+private:
+    string department;
+    double bonus;
+
+public:
+    Manager(string _name, int _id, double _salary, string _department, double _bonus)
+        : Employee(_name, _id, _salary), department(_department), bonus(_bonus) {}
+
+    void setDepartment(string _department) { department = _department; }
+    string getDepartment() const { return department; }
+
+    void setBonus(double _bonus) { bonus = _bonus; }
+    double getBonus() const { return bonus; }
+};
+
+class Engineer : public Employee {
+private:
+    string specialty;
+    int hours;
+
+public:
+    Engineer(string _name, int _id, double _salary, string _specialty, int _hours)
+        : Employee(_name, _id, _salary), specialty(_specialty), hours(_hours) {}
+
+    void setSpecialty(string _specialty) { specialty = _specialty; }
+    string getSpecialty() const { return specialty; }
+
+    void setHours(int _hours) { hours = _hours; }
+    int getHours() const { return hours; }
+};
+
+int main() {
+    Manager myManager("John Doe", 101, 80000.0, "Finance", 5000.0);
+    Engineer myEngineer("Alice Smith", 201, 60000.0, "Software Development", 40);
+
+    cout << "Manager Name: " << myManager.getName() << endl;
+    cout << "Manager Department: " << myManager.getDepartment() << endl;
+
+    cout << "\nEngineer Name: " << myEngineer.getName() << endl;
+    cout << "Engineer Specialty: " << myEngineer.getSpecialty() << endl;
+
+    return 0;
+}
+
+
+108 )  Create a base class called Person with data members for name, age, and gender.
+Derive two classes Student and Teacher from the base class. The Student class
+should have additional data members for roll number and class, while the
+Teacher class should have additional data members for subject and salary. Write
+member functions to get and set the data members for each class.
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+    string gender;
+
+public:
+    Person(string _name, int _age, string _gender) : name(_name), age(_age), gender(_gender) {}
+
+    void setName(string _name) { name = _name; }
+    string getName() const { return name; }
+
+    void setAge(int _age) { age = _age; }
+    int getAge() const { return age; }
+
+    void setGender(string _gender) { gender = _gender; }
+    string getGender() const { return gender; }
+};
+
+class Student : public Person {
+private:
+    int rollNumber;
+    string studentClass;
+
+public:
+    Student(string _name, int _age, string _gender, int _rollNumber, string _studentClass)
+        : Person(_name, _age, _gender), rollNumber(_rollNumber), studentClass(_studentClass) {}
+
+    void setRollNumber(int _rollNumber) { rollNumber = _rollNumber; }
+    int getRollNumber() const { return rollNumber; }
+
+    void setStudentClass(string _studentClass) { studentClass = _studentClass; }
+    string getStudentClass() const { return studentClass; }
+};
+
+class Teacher : public Person {
+private:
+    string subject;
+    double salary;
+
+public:
+    Teacher(string _name, int _age, string _gender, string _subject, double _salary)
+        : Person(_name, _age, _gender), subject(_subject), salary(_salary) {}
+
+    void setSubject(string _subject) { subject = _subject; }
+    string getSubject() const { return subject; }
+
+    void setSalary(double _salary) { salary = _salary; }
+    double getSalary() const { return salary; }
+};
+
+int main() {
+    Student myStudent("John Doe", 20, "Male", 101, "10th Grade");
+    Teacher myTeacher("Mrs. Smith", 35, "Female", "Mathematics", 50000.0);
+
+    cout << "Student Name: " << myStudent.getName() << endl;
+    cout << "Student Roll Number: " << myStudent.getRollNumber() << endl;
+
+    cout << "\nTeacher Name: " << myTeacher.getName() << endl;
+    cout << "Teacher Subject: " << myTeacher.getSubject() << endl;
+
+    return 0;
+}
+
