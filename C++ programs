@@ -2439,3 +2439,801 @@ int main() {
   return 0;
 }
 
+
+
+55 ) Write a program to read in two integers and perform the following operations on them: addition, subtraction, multiplication, division, and modulo. in c++
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int num1, num2;
+  
+  cout << "Enter first integer: "; 
+  cin >> num1;
+
+  cout << "Enter second integer: ";
+  cin >> num2;
+
+  int sum = num1 + num2;
+  int diff = num1 - num2; 
+  int prod = num1 * num2;
+  float quot = float(num1) / num2;
+  int mod = num1 % num2;
+
+  cout << "Sum: " << sum << endl;
+  cout << "Difference: " << diff << endl;
+  cout << "Product: " << prod << endl;  
+  cout << "Quotient: " << quot << endl;
+  cout << "Modulo: " << mod << endl;
+
+  return 0;
+}
+
+
+56 ) Program to determine the integer is odd or even
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int num;
+  cout << "Enter an integer: ";
+  cin >> num;
+
+  if(num % 2 == 0) {
+    cout << num << " is even."; 
+  }
+  else {
+    cout << num << " is odd.";  
+  }
+
+  return 0;
+}
+
+
+57 ) Program to compute the average of three integers
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int num1, num2, num3;
+  float average;
+  
+  cout << "Enter three integers: ";
+  cin >> num1 >> num2 >> num3;
+
+  average = (num1 + num2 + num3) / 3.0;
+
+  cout << "Average of " << num1 << ", " << num2 
+       << " and " << num3 << " is: " << average;
+
+  return 0;
+}
+
+
+58 ) Program to check two numbers are equal or not
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  float num1, num2;
+  
+  cout << "Enter first number: ";
+  cin >> num1;
+
+  cout << "Enter second number: "; 
+  cin >> num2;
+
+  if(num1 == num2) {
+    cout << num1 << " and " << num2 << " are equal.";
+  }
+  else {
+    cout << num1 << " and " << num2 << " are not equal."; 
+  }
+
+  return 0;
+}
+
+59 ) Write a program to read in two Floating numbers and perform the following operations on them: addition, subtraction, multiplication, division, and modulo
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  float num1, num2;
+  float sum, diff, prod, quot, mod;
+
+  cout << "Enter first number: ";
+  cin >> num1;
+
+  cout << "Enter second number: ";
+  cin >> num2;
+
+  sum = num1 + num2;
+  diff = num1 - num2;
+  prod = num1 * num2;
+  quot = num1 / num2;
+  mod = fmod(num1, num2);
+
+  cout << "Sum: " << sum << endl;
+  cout << "Difference: " << diff << endl;
+  cout << "Product: " << prod << endl;
+  cout << "Quotient: " << quot << endl;
+  cout << "Modulo: " << mod << endl;
+
+  return 0;  
+}
+
+
+60 )  Check whether the number is perfect or not
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+  int num, sum = 0, i;
+  
+  cout << "Enter a number: ";
+  cin >> num;
+
+  for(i=1; i<num; i++) {
+    if(num % i == 0) {
+      sum += i; 
+    }
+  }
+  
+  if(sum == num)
+    cout << num << " is a perfect number."; 
+  else
+    cout << num << " is not a perfect number.";  
+
+  return 0;
+}
+
+61 ) Harshad number
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int num, originalNum, remainder, sum=0;
+
+  cout << "Enter a number: ";
+  cin >> num;
+  
+  originalNum = num;
+
+  // Calculate sum of digits   
+  while(num>0) {
+    remainder = num%10;
+    sum += remainder;
+    num = num/10; 
+  }
+
+  // Check if number is divisible by sum of digits
+  if(originalNum%sum == 0) {
+      cout << originalNum << " is a Harshad number.";  
+  }
+  else {
+      cout << originalNum << " is not a Harshad number.";
+  }
+
+  return 0;
+}
+
+62 )  Happy number
+
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int calculateSquareSum(int n) {
+  int squareSum = 0;
+  
+  while(n!=0) {
+    squareSum += (n%10) * (n%10);
+    n = n/10;
+  }
+  return squareSum;
+}
+
+bool isHappyNumber(int n) {
+  int slow, fast;
+  slow = n;
+  fast = n;
+  
+  do {
+    slow = calculateSquareSum(slow);
+    fast = calculateSquareSum(calculateSquareSum(fast));    
+  } while(slow!=fast);
+  
+  if(slow == 1) 
+    return true;
+  else
+    return false;  
+}
+
+int main() { 
+  int num;
+  cout<<"Enter a number: ";
+  cin>>num;
+  
+  if(isHappyNumber(num)) 
+    cout<<num<<" is a happy number"; 
+  else
+    cout<<num<<" is not a happy number";  
+  
+  return 0;
+}
+
+63 ) strong number
+
+
+#include <iostream>
+using namespace std;
+
+int factorial(int num) {
+  if(num == 0)
+    return 1;
+  return num * factorial(num-1); 
+}
+
+int main() {
+  int num, temp, lastDigitFactorialSum = 0;
+  
+  cout << "Enter a number: ";
+  cin >> num;
+
+  temp = num;
+
+  while(temp > 0) {
+    int lastDigit = temp % 10; 
+    int fact = factorial(lastDigit);  
+    lastDigitFactorialSum += fact;
+    temp = temp / 10;
+  }
+
+  if(lastDigitFactorialSum == num) {
+    cout << num << " is a strong number.";
+  }
+  else {
+    cout << num << " is not a strong number."; 
+  }
+
+  return 0;  
+}
+
+
+64 ) buzz number 
+
+#include <iostream>
+using namespace std;
+
+bool checkBuzz(int n) {
+  int num = n;
+  
+  while(num > 0) {
+    if(num%10 == 7)
+      return true;  
+    num = num/10;
+  }
+  return false;
+}
+
+int main() {
+  int num;
+  cout << "Enter a number: ";
+  cin >> num;
+
+  if(checkBuzz(num)) {
+    cout << num << " is a buzz number"; 
+  }
+  else {
+    cout << num << " is not a buzz number";
+  }
+
+  return 0;
+}
+
+65 ) . neon number
+
+#include <iostream>
+#include <math.h> 
+
+using namespace std;
+
+int main() {
+  int num, square, sumOfDigits = 0;
+
+  cout << "Enter a number: ";
+  cin >> num;
+
+  // Find the square of the number
+  square = num * num;
+  
+  // Calculate sum of digits of square  
+  while (square != 0) {
+    sumOfDigits = sumOfDigits + square % 10;
+    square = square / 10;
+  }
+
+  // Check if sum of digits equals original number
+  if (sumOfDigits == num)
+    cout << num << " is a Neon Number."; 
+  else
+    cout << num << " is not a Neon Number.";
+
+  return 0;
+}
+
+
+66 )  abundant number
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  
+  int num, sum = 0;
+  
+  cout << "Enter a number: ";
+  cin >> num;
+
+  for(int i=1; i<num; i++) {
+    if(num%i == 0)
+      sum += i;
+  }
+
+  if(sum > num)
+    cout << num << " is an abundant number.";
+  else  
+    cout << num << " is not an abundant number."; 
+
+  return 0;
+}
+
+67 ) . narcissistic number
+
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+
+  int num, originalNum, digits=0, sum=0; 
+  
+  cout<<"Enter a number: ";
+  cin>>num;
+
+  originalNum = num;
+  
+  // Count digits  
+  int temp = num;
+  while(temp != 0) {
+    digits++;
+    temp = temp/10;
+  }
+  
+  temp = num;
+  
+  // Calculate sum of power of digits
+  while(temp != 0) {
+    int remainder = temp%10; 
+    sum += pow(remainder, digits);  
+    temp = temp/10; 
+  }
+
+  if(sum == originalNum) 
+    cout<<num<<" is a narcissistic number";
+  else
+    cout<<num<<" is not a narcissistic number";  
+
+  return 0;
+}
+
+
+68 ) print the pattern
+*
+**
+***
+****
+*****
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int rows;
+	cout<<"enter the number of rows : ";
+	cin>>rows;
+	for(int i=1;i<=rows;i++){
+		for(int j=1;j<=i;j++){
+			cout<<" * ";
+		}
+		cout<<endl;
+	}
+}
+
+69 ) 1. print the pattern
+1
+22
+333
+4444
+55555
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int rows;
+	cout<<"enter the number of rows : ";
+	cin>>rows;
+	for(int i=1;i<=rows;i++){
+		for(int j=1;j<=i;j++){
+			cout<<i;
+		}
+		cout<<endl;
+	}
+}
+
+70 ) Print pascal triangle pattern nested for loop
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  
+  int rows;
+  
+  cout << "Enter number of rows: ";
+  cin >> rows;
+
+  for(int i=1; i<=rows; i++) {
+    
+    int num = 1;
+    
+    for(int j=1; j<=i; j++) {
+      cout << num << " ";
+      num = num * (i - j) / j; 
+    }
+    
+    cout << endl; 
+  }
+
+  return 0;
+}
+
+
+71 ) Print diamond pattern with * using nested for loop
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int rows;
+	cout<<"enter the number of rows : ";
+	cin>>rows;
+	for(int i=1;i<rows;i++){
+		for(int j=1;j<=rows-i;j++){
+			cout<<" ";
+		}
+		for(int k=1;k<=2*i-1;k++){
+			cout<<"*";
+		}
+		cout<<endl;
+		}
+		for(int i=rows;i>=1;i--){
+		    for(int j=1;j<=rows-i;j++){
+		        cout<<" ";
+		}
+		for(int k=1;k<=2*i-1;k++){
+			cout<<"*";
+		}
+		cout<<endl;
+		}
+		return 0;
+		
+}
+
+
+72 ) Write a c++ program to create a class for a bank account with a constructor and a
+destructor
+
+
+method 1 : 
+
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+  private:
+    string name;
+    int accountNumber;
+    double balance;
+
+  public:
+    // Constructor 
+    BankAccount(string n, int accNo, double b) {
+      name = n;
+      accountNumber = accNo;
+      balance = b;  
+      cout << "Account created for " << name << endl;
+    }
+
+    // Destructor
+    ~BankAccount() {
+      cout << "Account destroyed for " << name << endl;
+    }
+};
+
+int main() {
+
+  // Create account
+  BankAccount acc1 = BankAccount("John Doe", 12345, 5000);
+  
+  return 0;  
+}
+
+method 2 : 
+
+#include <iostream>
+#include <string>
+
+class BankAccount {
+private:
+    std::string accountHolderName;
+    double balance;
+
+public:
+    // Constructor
+    BankAccount(const std::string& name, double initialBalance) : accountHolderName(name), balance(initialBalance) {
+        std::cout << "Account created for " << accountHolderName << " with an initial balance of $" << initialBalance << std::endl;
+    }
+
+    // Destructor
+    ~BankAccount() {
+        std::cout << "Account for " << accountHolderName << " is being destroyed." << std::endl;
+    }
+
+    // Member function to display account information
+    void displayAccountInfo() const {
+        std::cout << "Account Holder: " << accountHolderName << std::endl;
+        std::cout << "Balance: $" << balance << std::endl;
+    }
+};
+
+int main() {
+    // Creating an instance of the BankAccount class
+    BankAccount myAccount("John Doe", 1000.0);
+
+    // Displaying account information
+    myAccount.displayAccountInfo();
+
+    // The destructor will be automatically called when the program exits the main function
+    return 0;
+}
+
+
+73 ) Write a c++ program to create a class for a car with a constructor and a
+destructor
+
+method 1 :
+
+#include <iostream>
+using namespace std;
+
+class Car {
+  private:
+    string brand;
+    string model;
+    int year;
+
+  public:
+    // Constructor
+    Car(string b, string m, int y) {
+      brand = b;
+      model = m; 
+      year = y;
+
+      cout << "Car " << model << " Created" << endl; 
+    }
+
+    // Destructor 
+    ~Car() {
+      cout << "Car " << model << " Destroyed" << endl;
+    }
+};
+
+int main() {
+
+  // Create Car
+  Car Civic("Honda", "Civic", 2022);
+
+  return 0;  
+}
+
+method 2 :
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+private:
+    string make;
+    string model;
+    int year;
+
+public:
+    Car(const string& carMake, const string& carModel, int carYear) : make(carMake), model(carModel), year(carYear) {
+        cout << "A new car is created: " << year << " " << make << " " << model << endl;
+    }
+
+    ~Car() {
+        cout << "The car is being destroyed: " << year << " " << make << " " << model << endl;
+    }
+
+    void displayCarInfo() const {
+        cout << "Car: " << year << " " << make << " " << model << endl;
+    }
+};
+
+int main() {
+    Car myCar("Toyota", "Camry", 2022);
+    myCar.displayCarInfo();
+    return 0;
+}
+
+
+74 ) Write a c++ program to create a class for a rectangle with a constructor and a
+destructor
+
+method 1 : 
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+  private:
+    double length;
+    double breadth;
+
+  public:
+    // Constructor
+    Rectangle(double l=1, double b=1) {
+      length = l;  
+      breadth = b;
+      cout << "Rectangle created!" << endl;
+    }
+
+    // Destructor
+    ~Rectangle() {
+      cout << "Rectangle destroyed!" << endl;
+    }    
+      
+    double area() {
+      return length * breadth; 
+    }
+};
+
+int main() {
+  Rectangle r(12, 5);
+  
+  double a = r.area();
+  
+  cout << "Area: " << a << endl;
+  
+  return 0;
+}
+
+method 2 : 
+
+#include <iostream>
+
+using namespace std;
+
+class Rectangle {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double len, double wid) : length(len), width(wid) {
+        cout << "Rectangle created with length: " << length << " and width: " << width << endl;
+    }
+
+    ~Rectangle() {
+        cout << "Rectangle destroyed with length: " << length << " and width: " << width << endl;
+    }
+
+    void displayRectangleInfo() const {
+        cout << "Rectangle: length = " << length << ", width = " << width << endl;
+    }
+};
+
+int main() {
+    Rectangle myRectangle(5.0, 3.0);
+    myRectangle.displayRectangleInfo();
+    return 0;
+}
+
+
+75 ) Write a c++ program to create a class for a book with a constructor and a
+destructor
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Book {
+private:
+    string title;
+    string author;
+
+public:
+    Book(const string& bookTitle, const string& bookAuthor) : title(bookTitle), author(bookAuthor) {
+        cout << "Book created: " << title << " by " << author << endl;
+    }
+
+    ~Book() {
+        cout << "Book destroyed: " << title << " by " << author << endl;
+    }
+
+    void displayBookInfo() const {
+        cout << "Book: " << title << " by " << author << endl;
+    }
+};
+
+int main() {
+    Book myBook("The Great Gatsby", "F. Scott Fitzgerald");
+    myBook.displayBookInfo();
+    return 0;
+}
+
+
+76 ) Write a c++ program to create a class for student with a constructor and a
+destructor
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int studentId;
+
+public:
+    Student(const string& studentName, int id) : name(studentName), studentId(id) {
+        cout << "Student created: " << name << " (ID: " << studentId << ")" << endl;
+    }
+
+    ~Student() {
+        cout << "Student destroyed: " << name << " (ID: " << studentId << ")" << endl;
+    }
+
+    void displayStudentInfo() const {
+        cout << "Student: " << name << " (ID: " << studentId << ")" << endl;
+    }
+};
+
+int main() {
+    Student myStudent("John Doe", 12345);
+    myStudent.displayStudentInfo();
+    return 0;
+}
