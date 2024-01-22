@@ -4653,3 +4653,325 @@ int main() {
     return 0;
 }
 
+
+
+109 ) Write a c++ program to demonstrate to use of the finally block for handling
+exceptions
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+    try {
+        int numerator, denominator, result;
+
+        cout << "Enter the numerator: ";
+        cin >> numerator;
+
+        cout << "Enter the denominator: ";
+        cin >> denominator;
+
+        if (denominator == 0) {
+            throw runtime_error("Division by zero is not allowed.");
+        }
+
+        result = numerator / denominator;
+
+        cout << "Result: " << result << endl;
+    } catch (const exception& e) {
+        cerr << "Exception caught: " << e.what() << endl;
+    } catch (...) {
+        cerr << "Unknown exception caught." << endl;
+    }
+
+    cout << "Finally block (cleanup code) executed." << endl;
+
+    return 0;
+}
+
+
+110 ) Write a c++ program to demonstrate to use of nested try-catch blocks for
+handling exceptions
+
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+    try {
+        cout << "Outer try block started.\n";
+
+        try {
+            cout << "Inner try block started.\n";
+
+            int x, y;
+
+            cout << "Enter x: ";
+            cin >> x;
+
+            cout << "Enter y: ";
+            cin >> y;
+
+            if (y == 0) {
+                throw runtime_error("Inner try block: Division by zero is not allowed.");
+            }
+
+            int result = x / y;
+
+            cout << "Result: " << result << "\n";
+
+            cout << "Inner try block ended.\n";
+
+        } catch (const exception& innerException) {
+            cerr << "Inner catch block: " << innerException.what() << "\n";
+        }
+
+        cout << "Code after inner try-catch blocks.\n";
+
+        throw runtime_error("Outer try block: Simulated exception.");
+
+        cout << "Outer try block ended.\n";
+
+    } catch (const exception& outerException) {
+        cerr << "Outer catch block: " << outerException.what() << "\n";
+    }
+
+    cout << "Code after outer try-catch blocks.\n";
+
+    return 0;
+}
+
+method 2 : 
+
+#include <iostream>
+#include <stdexcept>
+using namespace std;
+
+int main() {
+  try {
+    cout << "Outer try block started.\n";
+    try {
+      cout << "Inner try block started.\n";  
+      int x, y;
+      cout << "Enter x: ";
+      cin >> x;
+      cout << "Enter y: ";  
+      cin >> y;
+      if(y == 0) {
+        throw runtime_error("Inner try block: Division by zero is not allowed.");
+      }
+      int result = x/y;
+      cout << "Result: " << result << "\n";
+      cout << "Inner try block ended.\n";
+    } catch(const exception& innerException) {
+      cerr << "Inner catch block: " << innerException.what() << "\n";
+    }
+    cout << "Code after inner try-catch blocks.\n";
+    throw runtime_error("Outer try block: Simulated exception.");
+    cout << "Outer try block ended.\n"; 
+  } catch(const exception& outerException) {
+    cerr << "Outer catch block: " << outerException.what() << "\n";
+  }
+  
+  cout << "Code after outer try-catch blocks.\n";  
+  return 0;
+}
+
+
+111 )Write a c++ program to demonstrate to use of user-defined exception for
+handling custom exception
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+class CustomException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "CustomException: This is a custom exception!";
+    }
+};
+
+void myFunction(int x) {
+    if (x < 0) {
+        throw CustomException();
+    }
+    cout << "Value is: " << x << "\n";
+}
+
+int main() {
+    try {
+        int userInput;
+        cout << "Enter a non-negative integer: ";
+        cin >> userInput;
+
+        myFunction(userInput);
+
+    } catch (const CustomException& customException) {
+        cerr << "Caught exception: " << customException.what() << "\n";
+    } catch (const exception& generalException) {
+        cerr << "Caught general exception: " << generalException.what() << "\n";
+    }
+
+    return 0;
+}
+
+
+112 ) Write a c++ program to demonstrate to use of the standard class for handling
+exceptions
+
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+    try {
+        int numerator, denominator, result;
+
+        cout << "Enter the numerator: ";
+        cin >> numerator;
+
+        cout << "Enter the denominator: ";
+        cin >> denominator;
+
+        if (denominator == 0) {
+            throw logic_error("Division by zero is not allowed.");
+        }
+
+        result = numerator / denominator;
+
+        cout << "Result: " << result << endl;
+
+    } catch (const invalid_argument& ia) {
+        cerr << "Invalid argument: " << ia.what() << endl;
+    } catch (const out_of_range& oor) {
+        cerr << "Out of range: " << oor.what() << endl;
+    } catch (const logic_error& le) {
+        cerr << "Logic error: " << le.what() << endl;
+    } catch (const exception& e) {
+        cerr << "Exception caught: " << e.what() << endl;
+    }
+
+    return 0;
+}
+
+
+113 ) Write a c++ program to demonstrate to use of the keyword to throw an exception
+
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int divide(int numerator, int denominator) {
+    if (denominator == 0) {
+        throw runtime_error("Division by zero is not allowed.");
+    }
+    return numerator / denominator;
+}
+
+int main() {
+    try {
+        int numerator, denominator, result;
+
+        cout << "Enter the numerator: ";
+        cin >> numerator;
+
+        cout << "Enter the denominator: ";
+        cin >> denominator;
+
+        result = divide(numerator, denominator);
+
+        cout << "Result: " << result << endl;
+
+    } catch (const exception& e) {
+        cerr << "Exception caught: " << e.what() << endl;
+    }
+
+    return 0;
+}
+
+
+114 )  Write a c++ program to demonstrate to use of multiple catch blocks for handling
+different types of exceptions
+
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+    try {
+        int numerator, denominator, result;
+
+        cout << "Enter the numerator: ";
+        cin >> numerator;
+
+        cout << "Enter the denominator: ";
+        cin >> denominator;
+
+        if (denominator == 0) {
+            throw logic_error("Division by zero is not allowed.");
+        }
+
+        if (numerator < 0) {
+            throw invalid_argument("Numerator must be non-negative.");
+        }
+
+        result = numerator / denominator;
+
+        cout << "Result: " << result << endl;
+
+    } catch (const invalid_argument& ia) {
+        cerr << "Invalid argument: " << ia.what() << endl;
+    } catch (const logic_error& le) {
+        cerr << "Logic error: " << le.what() << endl;
+    } catch (const exception& e) {
+        cerr << "Exception caught: " << e.what() << endl;
+    }
+
+    return 0;
+}
+
+115 ) Write a c++ program to demonstrate to use of try-catch blocks for handling
+exceptions
+
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+    try {
+        int numerator, denominator, result;
+
+        cout << "Enter the numerator: ";
+        cin >> numerator;
+
+        cout << "Enter the denominator: ";
+        cin >> denominator;
+
+        if (denominator == 0) {
+            throw runtime_error("Division by zero is not allowed.");
+        }
+
+        result = numerator / denominator;
+
+        cout << "Result: " << result << endl;
+
+    } catch (const exception& e) {
+        cerr << "Exception caught: " << e.what() << endl;
+    }
+
+    return 0;
+}
